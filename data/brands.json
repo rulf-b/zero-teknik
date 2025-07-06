@@ -1,0 +1,154 @@
+[
+  {
+    "name": "Samsung",
+    "models": []
+  },
+  {
+    "name": "LG",
+    "logo": "/brands/lg.svg"
+  },
+  {
+    "name": "TCL",
+    "logo": "/brands/tcl.svg"
+  },
+  {
+    "name": "Philips",
+    "logo": "/brands/philips.svg"
+  },
+  {
+    "name": "Sony",
+    "logo": "/brands/sony.svg"
+  },
+  {
+    "name": "Vestel",
+    "logo": "/brands/vestel.svg"
+  },
+  {
+    "name": "Beko",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Arçelik",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Toshiba",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Awox",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Onvo",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Dijitsu",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Sunny",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Next",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Grundig",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Altus",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Axen",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Botech",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Elton",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Fenoti",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Finlux",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Hi-Level",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Hyundai",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "JVC",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Nexon",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Nordmende",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Peaq",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Preo",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Profilo",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Redline",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Regal",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Seg",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Skytech",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Telefunken",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Telenova",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Woon",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Xiaomi",
+    "logo": "/brands/placeholder.svg"
+  },
+  {
+    "name": "Yumatu",
+    "logo": "/brands/placeholder.svg"
+  }
+]

@@ -1,0 +1,2 @@
+Bu klasör, TV markalarının SVG logolarını barındırmak için oluşturulmuştur.
+Her marka için örnek: samsung.svg, lg.svg, sony.svg, philips.svg, tcl.svg, vestel.svg, hisense.svg, panasonic.svg 

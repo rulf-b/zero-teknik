@@ -1,0 +1,284 @@
+import { Metadata } from 'next';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react';
+import ContactForm from '@/components/contact/ContactForm';
+
+export const metadata: Metadata = {
+  title: 'Bize Ulaşın | İstanbul TV Tamir Servisi',
+  description: 'TV tamir uzmanlarımızla iletişime geçin. Telefon, WhatsApp, e-posta veya ziyaret. Tüm TV tamir talepleriniz için hızlı yanıt garantisi.',
+  keywords: 'iletişim TV tamir, TV tamir İstanbul iletişim, TV servis telefon numarası',
+};
+
+const ContactPage = () => {
+  const contactMethods = [
+    {
+      icon: Phone,
+      title: 'Telefon',
+      description: 'Hemen yardım almak için bizi arayın',
+      contact: '+90 555 123 4567',
+      action: 'tel:+905551234567',
+      available: '7/24 Hizmet'
+    },
+    {
+      icon: MessageCircle,
+      title: 'WhatsApp',
+      description: 'WhatsApp üzerinden hızlı yanıt',
+      contact: '+90 555 123 4567',
+      action: 'https://wa.me/905551234567',
+      available: 'Şu an çevrimiçi'
+    },
+    {
+      icon: Mail,
+      title: 'E-posta',
+      description: 'Detaylı bilgi gönderebilirsiniz',
+      contact: 'info@techfixpro.com',
+      action: 'mailto:info@techfixpro.com',
+      available: '< 2 saat yanıt'
+    },
+    {
+      icon: MapPin,
+      title: 'Hizmet Bölgesi',
+      description: "İstanbul'un her yerine geliyoruz",
+      contact: "İstanbul, Tüm İlçeler",
+      action: '/locations/istanbul',
+      available: 'Ücretsiz alım & teslimat'
+    }
+  ];
+
+  const faqs = [
+    {
+      question: "TV'mi ne kadar hızlı tamir edebilirsiniz?",
+      answer: "Çoğu onarım 2-4 saat içinde tamamlanır. Acil durumlar için aynı gün servis sunuyoruz."
+    },
+    {
+      question: "Onarımlarda garanti veriyor musunuz?",
+      answer: "Evet, tüm onarımlar parça ve işçilik dahil 12 ay kapsamlı garantiyle yapılır."
+    },
+    {
+      question: "TV ekran değişimi ne kadar tutar?",
+      answer: "Fiyatlar TV boyutuna ve modeline göre değişir. Ekran değişimi genellikle ₺800 ile ₺3.500 arasındadır."
+    },
+    {
+      question: "Tüm TV markalarını tamir ediyor musunuz?",
+      answer: "Evet, Samsung, LG, Sony, Philips, TCL ve daha birçok büyük markaya hizmet veriyoruz."
+    }
+  ];
+
+  return (
+    <div className="pt-20">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-blue-50 to-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            TV Tamir Uzmanlarımıza Ulaşın
+          </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+            TV tamir ihtiyaçlarınız için hızlı ve profesyonel destek alın. Birden fazla iletişim seçeneğiyle hızlı yanıt garantisi.
+          </p>
+        </div>
+      </section>
+
+      {/* Contact Methods */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            {contactMethods.map((method, index) => {
+              const IconComponent = method.icon;
+              return (
+                <Card key={index} className="p-6 text-center hover:shadow-lg transition-shadow">
+                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <IconComponent className="w-8 h-8 text-blue-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    {method.title}
+                  </h3>
+                  <p className="text-gray-600 mb-4">
+                    {method.description}
+                  </p>
+                  <div className="text-lg font-semibold text-blue-600 mb-2">
+                    {method.contact}
+                  </div>
+                  <div className="text-sm text-green-600 font-medium mb-4">
+                    {method.available}
+                  </div>
+                  {method.action.startsWith('http') ? (
+                    <a href={method.action} target="_blank" rel="noopener noreferrer">
+                      <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                        Şimdi İletişime Geç
+                      </Button>
+                    </a>
+                  ) : method.action.startsWith('/') ? (
+                    <Link href={method.action}>
+                      <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                        Detayları Gör
+                      </Button>
+                    </Link>
+                  ) : (
+                    <a href={method.action}>
+                      <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                        Şimdi İletişime Geç
+                      </Button>
+                    </a>
+                  )}
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form and Info */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Form */}
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                Bize Mesaj Gönderin
+              </h2>
+              <p className="text-gray-600 mb-8">
+                Aşağıdaki formu doldurun, mesai saatleri içinde 2 saat içinde size dönüş yapalım.
+              </p>
+              <ContactForm />
+            </div>
+
+            {/* Contact Information */}
+            <div className="space-y-8">
+              {/* Business Hours */}
+              <Card className="p-6">
+                <div className="flex items-center space-x-3 mb-4">
+                  <Clock className="w-6 h-6 text-blue-600" />
+                  <h3 className="text-xl font-bold text-gray-900">Çalışma Saatleri</h3>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Pazartesi - Cuma</span>
+                    <span className="font-medium">8:00 - 22:00</span>
+                  </div>
+                  
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Cumartesi</span>
+                    <span className="font-medium">9:00 - 20:00</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Pazar</span>
+                    <span className="font-medium">10:00 - 18:00</span>
+                  </div>
+                  <div className="border-t pt-3 mt-3">
+                    <div className="text-sm text-green-600 font-medium">
+                      Acil servis 7/24 hizmetinizde
+                    </div>
+                  </div>
+                </div>
+              </Card>
+
+              {/* Service Areas */}
+              <Card className="p-6">
+                <div className="flex items-center space-x-3 mb-4">
+                  <MapPin className="w-6 h-6 text-blue-600" />
+                  <h3 className="text-xl font-bold text-gray-900">Hizmet Bölgeleri</h3>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-gray-600">TV tamir hizmeti sunduğumuz bölgeler:</p>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Tüm İstanbul ilçeleri</li>
+                    <li>• Ücretsiz alım ve teslimat</li>
+                    <li>• Yerinde tamir imkanı</li>
+                    <li>• Çoğu bölgede aynı gün servis</li>
+                  </ul>
+                  <Link href="/locations/istanbul" className="inline-block mt-3">
+                    <Button variant="outline" size="sm" className="border-blue-600 text-blue-600 hover:bg-blue-50">
+                      Tüm Bölgeleri Gör
+                    </Button>
+                  </Link>
+                </div>
+              </Card>
+
+              {/* Quick Actions */}
+              <Card className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Hızlı İşlemler</h3>
+                <div className="space-y-3">
+                  <Link href="/quote" className="block">
+                    <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                      Ücretsiz Teklif Al
+                    </Button>
+                  </Link>
+                  <a href="tel:+905551234567" className="block">
+                    <Button variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-50">
+                      <Phone className="w-4 h-4 mr-2" />
+                      Hemen Ara
+                    </Button>
+                  </a>
+                  <a 
+                    href="https://wa.me/905551234567?text=Hi! I need help with my TV repair."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <Button variant="outline" className="w-full border-green-600 text-green-600 hover:bg-green-50">
+                      <MessageCircle className="w-4 h-4 mr-2" />
+                      WhatsApp
+                    </Button>
+                  </a>
+                </div>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Sıkça Sorulan Sorular
+            </h2>
+            <p className="text-xl text-gray-600">
+              TV tamir hizmetlerimizle ilgili sık sorulan sorulara hızlı yanıtlar
+            </p>
+          </div>
+
+          <div className="space-y-6">
+            {faqs.map((faq, index) => (
+              <Card key={index} className="p-6">
+                <h3 className="text-lg font-bold text-gray-900 mb-3">
+                  {faq.question}
+                </h3>
+                <p className="text-gray-600">
+                  {faq.answer}
+                </p>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-gray-600 mb-4">
+              Başka sorunuz mu var? Size yardımcı olmaktan memnuniyet duyarız!
+            </p>
+            <div className="flex justify-center space-x-4">
+              <a href="tel:+905551234567">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                  Bizi Arayın
+                </Button>
+              </a>
+              <a 
+                href="https://wa.me/905551234567?text=Hi! I have a question about TV repair."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-50">
+                  WhatsApp
+                </Button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default ContactPage;

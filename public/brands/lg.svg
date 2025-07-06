@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 240">
+  <g>
+    <circle cx="120" cy="120" r="100" fill="#a50034"/>
+    <path d="M120,40 a80,80 0 1,0 0.1,0" fill="#fff"/>
+    <circle cx="90" cy="100" r="15" fill="#fff"/>
+    <rect x="115" y="70" width="20" height="70" fill="#fff"/>
+    <rect x="120" y="140" width="50" height="20" fill="#fff"/>
+    <text x="200" y="170" font-family="Arial, Helvetica, sans-serif" font-size="120" fill="#555" font-weight="bold">LG</text>
+  </g>
+</svg> 
