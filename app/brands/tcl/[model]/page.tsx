@@ -18,7 +18,7 @@ export default function TCLModelDetail({ params }: { params: { model: string } }
           {/* Sol: Metin */}
           <div className="flex-1 flex flex-col items-start justify-center text-left z-10">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-blue-700 mb-6 leading-tight drop-shadow-sm">{modelData.brand} {modelData.model} Ekran Değişimi ve Tamiri</h1>
-            <p className="text-lg sm:text-xl text-gray-700 mb-8 max-w-xl">Orijinal parçalar, <span className="text-blue-600 font-semibold">6 ay garanti</span> ve <span className="text-blue-600 font-semibold">uzman teknisyenlerimiz</span>le televizyonunuzu ilk günkü performansına kavuşturuyoruz.</p>
+            <p className="text-lg sm:text-xl text-gray-700 mb-8 max-w-xl">Orijinal parçalar, <span className="text-blue-600 font-semibold">12 ay garanti</span> ve <span className="text-blue-600 font-semibold">uzman teknisyenlerimiz</span>le televizyonunuzu ilk günkü performansına kavuşturuyoruz.</p>
             <a href="#fiyat-teklifi" className="inline-block px-8 py-4 rounded-full bg-blue-600 text-white text-lg font-bold shadow-lg hover:bg-blue-700 transition-all duration-200 animate-float focus:outline-none focus:ring-4 focus:ring-blue-300">Anında Fiyat Teklifi Al</a>
           </div>
           {/* Sağ: TV Görseli */}
@@ -73,8 +73,8 @@ export default function TCLModelDetail({ params }: { params: { model: string } }
           {/* Kart 1 */}
           <div className="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center text-center hover:shadow-xl transition-all">
             <svg className="w-14 h-14 text-blue-600 mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l7 4v6c0 5.25-3.5 10-7 10s-7-4.75-7-10V6l7-4z"/></svg>
-            <h3 className="text-lg font-bold text-gray-900 mb-2">6 Ay Garantili Servis</h3>
-            <p className="text-gray-600">Yaptığımız tüm parça değişimi ve onarım işlemleri, adınıza faturalı ve 6 ay garantilidir.</p>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">12 Ay Garantili Servis</h3>
+            <p className="text-gray-600">Yaptığımız tüm parça değişimi ve onarım işlemleri, adınıza faturalı ve 12 ay garantilidir.</p>
           </div>
           {/* Kart 2 */}
           <div className="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center text-center hover:shadow-xl transition-all">

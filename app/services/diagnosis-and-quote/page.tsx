@@ -83,197 +83,200 @@ export default function DiagnosisAndQuotePage() {
           {/* Form Alanı */}
           <div className="md:col-span-2 bg-white rounded-2xl shadow-lg p-8">
             {!submitted ? (
-              <form onSubmit={handleSubmit} className="space-y-8">
-                {/* Kişisel Bilgiler */}
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Kişisel Bilgiler</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Ad Soyad *</label>
-                      <input 
-                        type="text" 
-                        name="name" 
-                        value={form.name} 
-                        onChange={handleChange} 
-                        required 
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-                        placeholder="Adınızı ve soyadınızı girin" 
-                      />
+              <>
+                <form onSubmit={handleSubmit} className="space-y-8">
+                  {/* Kişisel Bilgiler */}
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Kişisel Bilgiler</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Ad Soyad *</label>
+                        <input 
+                          type="text" 
+                          name="name" 
+                          value={form.name} 
+                          onChange={handleChange} 
+                          required 
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                          placeholder="Adınızı ve soyadınızı girin" 
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Telefon Numarası *</label>
+                        <input 
+                          type="tel" 
+                          name="phone" 
+                          value={form.phone} 
+                          onChange={handleChange} 
+                          required 
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                          placeholder="+90 5XX XXX XX XX" 
+                        />
+                      </div>
+                      <div className="md:col-span-2">
+                        <label className="block text-sm font-medium text-gray-700 mb-2">E-posta Adresi</label>
+                        <input 
+                          type="email" 
+                          name="email" 
+                          value={form.email} 
+                          onChange={handleChange} 
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                          placeholder="ornek@email.com" 
+                        />
+                      </div>
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Telefon Numarası *</label>
-                      <input 
-                        type="tel" 
-                        name="phone" 
-                        value={form.phone} 
-                        onChange={handleChange} 
-                        required 
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-                        placeholder="+90 5XX XXX XX XX" 
-                      />
+                  </div>
+
+                  {/* TV Bilgileri */}
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">TV Bilgileri</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">TV Markası *</label>
+                        <select 
+                          name="brand" 
+                          value={form.brand} 
+                          onChange={handleChange} 
+                          required 
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        >
+                          <option value="">Marka Seçin</option>
+                          <option value="Samsung">Samsung</option>
+                          <option value="LG">LG</option>
+                          <option value="Sony">Sony</option>
+                          <option value="Philips">Philips</option>
+                          <option value="Panasonic">Panasonic</option>
+                          <option value="Hisense">Hisense</option>
+                          <option value="TCL">TCL</option>
+                          <option value="Vestel">Vestel</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">TV Modeli</label>
+                        <input 
+                          type="text" 
+                          name="model" 
+                          value={form.model} 
+                          onChange={handleChange} 
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                          placeholder="Örn: 55NU7100" 
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Ekran Boyutu *</label>
+                        <select 
+                          name="size" 
+                          value={form.size} 
+                          onChange={handleChange} 
+                          required 
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        >
+                          <option value="">Boyut Seçin</option>
+                          <option value="32">32"</option>
+                          <option value="40">40"</option>
+                          <option value="43">43"</option>
+                          <option value="49">49"</option>
+                          <option value="50">50"</option>
+                          <option value="55">55"</option>
+                          <option value="65">65"</option>
+                          <option value="75">75"</option>
+                          <option value="85">85"</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Arıza Türü *</label>
+                        <select 
+                          name="issue" 
+                          value={form.issue} 
+                          onChange={handleChange} 
+                          required 
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        >
+                          <option value="">Arıza Seçin</option>
+                          <option value="Cracked Screen">Kırık Ekran</option>
+                          <option value="Black Screen">Siyah Ekran</option>
+                          <option value="Backlight Issues">Arka Aydınlatma Sorunları</option>
+                          <option value="Dead Pixels">Ölü Piksel</option>
+                          <option value="Color Problems">Renk Sorunları</option>
+                          <option value="No Power">Güç Yok</option>
+                          <option value="Other">Diğer</option>
+                        </select>
+                      </div>
+                      <div className="md:col-span-2">
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Lokasyon *</label>
+                        <select 
+                          name="location" 
+                          value={form.location} 
+                          onChange={handleChange} 
+                          required 
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        >
+                          <option value="">Lokasyon Seçin</option>
+                          <option value="Istanbul">İstanbul</option>
+                          <option value="Ankara">Ankara</option>
+                          <option value="Izmir">İzmir</option>
+                          <option value="Bursa">Bursa</option>
+                          <option value="Antalya">Antalya</option>
+                          <option value="Other">Diğer</option>
+                        </select>
+                      </div>
+                      <div className="md:col-span-2">
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Sorununuzu Açıklayın</label>
+                        <textarea
+                          name="description"
+                          value={form.description}
+                          onChange={handleChange}
+                          rows={4}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          placeholder="TV'nizdeki sorunu kısaca açıklayın..."
+                        />
+                      </div>
                     </div>
-                    <div className="md:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">E-posta Adresi</label>
-                      <input 
-                        type="email" 
-                        name="email" 
-                        value={form.email} 
-                        onChange={handleChange} 
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-                        placeholder="ornek@email.com" 
-                      />
+                  </div>
+
+                  <Button 
+                    type="submit" 
+                    size="lg" 
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 text-lg font-semibold"
+                  >
+                    Ücretsiz Fiyat Teklifi Al
+                  </Button>
+                </form>
+                {/* Süreç Akışı */}
+                <div className="mt-24 mb-8">
+                  <h3 className="text-2xl font-bold text-center text-blue-900 mb-8">Sadece 3 Adımda TV'niz Onarılsın</h3>
+                  <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+                    {/* Adım 1 */}
+                    <div className="flex flex-col items-center">
+                      <div className="bg-blue-100 text-blue-600 rounded-full w-20 h-20 flex items-center justify-center mb-4 shadow-md text-4xl">
+                        <span>📝</span>
+                      </div>
+                      <div className="font-bold text-lg text-blue-900 mb-1">Formu Doldurun</div>
+                      <div className="text-gray-600 text-center max-w-xs">Kısa formu doldurun, TV'nizle ilgili bilgileri paylaşın.</div>
+                    </div>
+                    {/* Ok */}
+                    <div className="hidden md:block text-4xl text-blue-300">→</div>
+                    {/* Adım 2 */}
+                    <div className="flex flex-col items-center">
+                      <div className="bg-green-100 text-green-600 rounded-full w-20 h-20 flex items-center justify-center mb-4 shadow-md text-4xl">
+                        <span>📞</span>
+                      </div>
+                      <div className="font-bold text-lg text-green-700 mb-1">Uzmanımız Sizi Arasın</div>
+                      <div className="text-gray-600 text-center max-w-xs">En kısa sürede uzmanımız sizi arayarak detayları ve fiyatı iletsin.</div>
+                    </div>
+                    {/* Ok */}
+                    <div className="hidden md:block text-4xl text-blue-300">→</div>
+                    {/* Adım 3 */}
+                    <div className="flex flex-col items-center">
+                      <div className="bg-yellow-100 text-yellow-600 rounded-full w-20 h-20 flex items-center justify-center mb-4 shadow-md text-4xl">
+                        <span>🛠️</span>
+                      </div>
+                      <div className="font-bold text-lg text-yellow-700 mb-1">TV'niz Onarılsın</div>
+                      <div className="text-gray-600 text-center max-w-xs">Uygun zamanda adresinize gelip TV'nizi hızlıca onarıyoruz.</div>
                     </div>
                   </div>
                 </div>
-
-                {/* TV Bilgileri */}
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">TV Bilgileri</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">TV Markası *</label>
-                      <select 
-                        name="brand" 
-                        value={form.brand} 
-                        onChange={handleChange} 
-                        required 
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      >
-                        <option value="">Marka Seçin</option>
-                        <option value="Samsung">Samsung</option>
-                        <option value="LG">LG</option>
-                        <option value="Sony">Sony</option>
-                        <option value="Philips">Philips</option>
-                        <option value="Panasonic">Panasonic</option>
-                        <option value="Hisense">Hisense</option>
-                        <option value="TCL">TCL</option>
-                        <option value="Vestel">Vestel</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">TV Modeli</label>
-                      <input 
-                        type="text" 
-                        name="model" 
-                        value={form.model} 
-                        onChange={handleChange} 
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-                        placeholder="Örn: 55NU7100" 
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Ekran Boyutu *</label>
-                      <select 
-                        name="size" 
-                        value={form.size} 
-                        onChange={handleChange} 
-                        required 
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      >
-                        <option value="">Boyut Seçin</option>
-                        <option value="32">32"</option>
-                        <option value="40">40"</option>
-                        <option value="43">43"</option>
-                        <option value="49">49"</option>
-                        <option value="50">50"</option>
-                        <option value="55">55"</option>
-                        <option value="65">65"</option>
-                        <option value="75">75"</option>
-                        <option value="85">85"</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Arıza Türü *</label>
-                      <select 
-                        name="issue" 
-                        value={form.issue} 
-                        onChange={handleChange} 
-                        required 
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      >
-                        <option value="">Arıza Seçin</option>
-                        <option value="Cracked Screen">Kırık Ekran</option>
-                        <option value="Black Screen">Siyah Ekran</option>
-                        <option value="Backlight Issues">Arka Aydınlatma Sorunları</option>
-                        <option value="Dead Pixels">Ölü Piksel</option>
-                        <option value="Color Problems">Renk Sorunları</option>
-                        <option value="No Power">Güç Yok</option>
-                        <option value="Other">Diğer</option>
-                      </select>
-                    </div>
-                    <div className="md:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Sorununuzu Açıklayın</label>
-                      <textarea
-                        name="description"
-                        value={form.description}
-                        onChange={handleChange}
-                        rows={4}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        placeholder="TV'nizdeki sorunu kısaca açıklayın..."
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Servis Detayları */}
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Servis Detayları</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Lokasyon *</label>
-                      <select 
-                        name="location" 
-                        value={form.location} 
-                        onChange={handleChange} 
-                        required 
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      >
-                        <option value="">Lokasyon Seçin</option>
-                        <option value="Istanbul">İstanbul</option>
-                        <option value="Ankara">Ankara</option>
-                        <option value="Izmir">İzmir</option>
-                        <option value="Bursa">Bursa</option>
-                        <option value="Antalya">Antalya</option>
-                        <option value="Other">Diğer</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Tercih Edilen Tarih</label>
-                      <input 
-                        type="date" 
-                        name="preferredDate" 
-                        value={form.preferredDate} 
-                        onChange={handleChange} 
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-                        placeholder="gg.aa.yyyy" 
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Tercih Edilen Saat</label>
-                      <select 
-                        name="preferredTime" 
-                        value={form.preferredTime} 
-                        onChange={handleChange} 
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      >
-                        <option value="">Herhangi bir saat</option>
-                        <option value="09:00-12:00">09:00-12:00</option>
-                        <option value="12:00-15:00">12:00-15:00</option>
-                        <option value="15:00-18:00">15:00-18:00</option>
-                        <option value="18:00-21:00">18:00-21:00</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-
-                <Button 
-                  type="submit" 
-                  size="lg" 
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 text-lg font-semibold"
-                >
-                  Ücretsiz Fiyat Teklifi Al
-                </Button>
-              </form>
+              </>
             ) : (
               <div className="text-center py-16">
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">

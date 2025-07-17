@@ -103,12 +103,76 @@ const BlogPreview = () => {
         </div>
 
         {/* View All Button */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-12 mb-12">
           <Link href="/blog">
             <Button size="lg" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50">
               Tüm Makaleleri Gör
             </Button>
           </Link>
+        </div>
+
+        {/* Sıkça Sorulan Sorular */}
+        <div className="max-w-3xl mx-auto mt-24 mb-6">
+          <h3 className="text-4xl font-extrabold text-blue-900 mb-6 text-center">Sıkça Sorulan Sorular</h3>
+          <div className="space-y-4">
+            {/* SSS 1 */}
+            <details className="bg-blue-50 rounded-lg p-4 group" open>
+              <summary className="font-semibold text-lg text-blue-800 cursor-pointer flex items-center justify-between">
+                TV ekranım kırıldı, tamir mi edilmeli yoksa değişmeli mi?
+                <span className="ml-2 text-blue-400 group-open:rotate-90 transition-transform">▶</span>
+              </summary>
+              <div className="mt-2 text-gray-700">
+                Çoğu durumda kırık ekranlar tamir edilemez, ekran değişimi gerekir. Ancak panelin tipi ve hasarın boyutuna göre en uygun çözümü uzmanlarımız belirler.
+              </div>
+            </details>
+            {/* SSS 2 */}
+            <details className="bg-blue-50 rounded-lg p-4 group">
+              <summary className="font-semibold text-lg text-blue-800 cursor-pointer flex items-center justify-between">
+                TV tamiri ne kadar sürer?
+                <span className="ml-2 text-blue-400 group-open:rotate-90 transition-transform">▶</span>
+              </summary>
+              <div className="mt-2 text-gray-700">
+                Çoğu TV ekran değişimi ve tamiri aynı gün içinde tamamlanır. Parça temini veya özel arızalarda süre değişebilir.
+              </div>
+            </details>
+            {/* SSS 3 */}
+            <details className="bg-blue-50 rounded-lg p-4 group">
+              <summary className="font-semibold text-lg text-blue-800 cursor-pointer flex items-center justify-between">
+                Tamir sonrası garanti veriyor musunuz?
+                <span className="ml-2 text-blue-400 group-open:rotate-90 transition-transform">▶</span>
+              </summary>
+              <div className="mt-2 text-gray-700">
+                Evet, tüm ekran değişimi ve tamir işlemlerimizde 12 ay garanti sunuyoruz.
+              </div>
+            </details>
+            {/* SSS 4 */}
+            <details className="bg-blue-50 rounded-lg p-4 group">
+              <summary className="font-semibold text-lg text-blue-800 cursor-pointer flex items-center justify-between">
+                TV ekranımda ses var ama görüntü yok, neden olabilir?
+                <span className="ml-2 text-blue-400 group-open:rotate-90 transition-transform">▶</span>
+              </summary>
+              <div className="mt-2 text-gray-700">
+                Bu sorun genellikle arka aydınlatma arızası, panel veya anakart kaynaklı olabilir. Uzman teşhisi gereklidir.
+              </div>
+            </details>
+            {/* SSS 5 */}
+            <details className="bg-blue-50 rounded-lg p-4 group">
+              <summary className="font-semibold text-lg text-blue-800 cursor-pointer flex items-center justify-between">
+                TV ekran değişimi fiyatları neye göre belirleniyor?
+                <span className="ml-2 text-blue-400 group-open:rotate-90 transition-transform">▶</span>
+              </summary>
+              <div className="mt-2 text-gray-700">
+                Fiyatlar; TV'nin marka/modeli, ekran boyutu, panel tipi ve yedek parça maliyetine göre belirlenir. Net fiyat için ücretsiz teklif alabilirsiniz.
+              </div>
+            </details>
+          </div>
+          <div className="text-center mt-6">
+            <Link href="/faq">
+              <Button size="lg" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50">
+                Tüm Soruları Gör
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

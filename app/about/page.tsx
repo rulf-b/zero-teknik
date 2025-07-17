@@ -4,18 +4,18 @@ import { Button } from '@/components/ui/button';
 import { Shield, Users, Award, Clock, CheckCircle, Star } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Hakkımızda | Ekran Sitesi',
-  description: 'Ekran Sitesi olarak LED ekran, dijital tabela ve görsel sistemler alanında uzman ekibimizle kaliteli ve güvenilir çözümler sunuyoruz.',
+  title: 'Hakkımızda | Zero Teknik',
+  description: 'Zero Teknik olarak LED ekran, dijital tabela ve görsel sistemler alanında uzman ekibimizle kaliteli ve güvenilir çözümler sunuyoruz.',
   keywords: 'hakkımızda, ekran sitesi, LED ekran, dijital tabela, görsel sistemler, firma tanıtımı',
   openGraph: {
-    title: 'Hakkımızda | Ekran Sitesi',
+    title: 'Hakkımızda | Zero Teknik',
     description: 'LED ekran ve dijital tabela sektöründe uzman ekibimizle kaliteli çözümler sunuyoruz.',
     type: 'website',
     locale: 'tr_TR',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Hakkımızda | Ekran Sitesi',
+    title: 'Hakkımızda | Zero Teknik',
     description: 'LED ekran ve dijital tabela sektöründe uzman ekibimizle kaliteli çözümler sunuyoruz.',
   },
 };
@@ -91,11 +91,11 @@ const AboutPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                TechFix Pro Hakkında
+                Zero Teknik Hakkında
                 <span className="block text-blue-600">TV Tamir Uzmanları</span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                10 yılı aşkın süredir İstanbul\'un güvenilir TV tamir servisiyiz. Tüm TV tamir ihtiyaçlarınız için profesyonel, güvenilir ve uygun fiyatlı çözümler sunuyoruz.
+                10 yılı aşkın süredir İstanbul'un güvenilir TV tamir servisiyiz. Tüm TV tamir ihtiyaçlarınız için profesyonel, güvenilir ve uygun fiyatlı çözümler sunuyoruz.
               </p>
               
               <div className="grid grid-cols-2 gap-6 mb-8">
@@ -141,10 +141,10 @@ const AboutPage = () => {
             </h2>
             <div className="text-lg text-gray-600 space-y-6">
               <p>
-                TechFix Pro, 2014 yılında basit bir misyonla kuruldu: İstanbul halkına dürüst, profesyonel ve uygun fiyatlı TV tamir hizmeti sunmak. Küçük bir tamir atölyesi olarak başlayan yolculuğumuz, şehrin en güvenilir TV tamir servisine dönüştü.
+                Zero Teknik, 2014 yılında basit bir misyonla kuruldu: İstanbul halkına dürüst, profesyonel ve uygun fiyatlı TV tamir hizmeti sunmak. Küçük bir tamir atölyesi olarak başlayan yolculuğumuz, şehrin en güvenilir TV tamir servisine dönüştü.
               </p>
               <p>
-                Yıllar içinde, eski CRT modellerden en yeni OLED ve QLED ekranlara kadar binlerce TV tamir ettik. Kaliteye, şeffaflığa ve müşteri memnuniyetine olan bağlılığımız, İstanbul\'da TV tamiri denince akla gelen uzmanlar olmamızı sağladı.
+                Yıllar içinde, eski CRT modellerden en yeni OLED ve QLED ekranlara kadar binlerce TV tamir ettik. Kaliteye, şeffaflığa ve müşteri memnuniyetine olan bağlılığımız, İstanbul'da TV tamiri denince akla gelen uzmanlar olmamızı sağladı.
               </p>
               <p>
                 Bugün, teknolojiyi yakından takip ederek en yeni ekipmanlara, eğitimlere ve tekniklere yatırım yapıyoruz. Sertifikalı teknisyen ekibimiz, her onarıma onlarca yıllık birleşik deneyimle yaklaşıyor.
@@ -316,7 +316,7 @@ const AboutPage = () => {
             Uzman Servis Deneyimini Yaşayın
           </h2>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            TV tamirinde TechFix Pro'ya güvenen binlerce memnun müşterimize katılın. Hemen ücretsiz teklif alın!
+            TV tamirinde Zero Teknik'e güvenen binlerce memnun müşterimize katılın. Hemen ücretsiz teklif alın!
           </p>
           <div className="flex justify-center space-x-4">
             <Link href="/quote">

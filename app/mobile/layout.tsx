@@ -8,10 +8,10 @@ import WhatsAppButton from '@/components/ui/WhatsAppButton';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Professional TV Screen Repair & Replacement Services | TechFix Pro',
+  title: 'Professional TV Screen Repair & Replacement Services | Zero Teknik',
   description: 'Expert TV screen replacement, LED panel repair, and motherboard services. Fast, reliable repairs for all TV brands. Get your quote today!',
   keywords: 'TV screen repair, TV panel replacement, LED repair, motherboard repair, Samsung TV repair, LG TV repair',
-  authors: [{ name: 'TechFix Pro' }],
+  authors: [{ name: 'Zero Teknik' }],
   openGraph: {
     title: 'Professional TV Screen Repair & Replacement Services',
     description: 'Expert TV screen replacement, LED panel repair, and motherboard services. Fast, reliable repairs for all TV brands.',
@@ -43,7 +43,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'LocalBusiness',
-              name: 'TechFix Pro',
+              name: 'Zero Teknik',
               description: 'Professional TV Screen Repair and Replacement Services',
               address: {
                 '@type': 'PostalAddress',

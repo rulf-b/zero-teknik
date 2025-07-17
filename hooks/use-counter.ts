@@ -20,15 +20,13 @@ export const useCounter = ({ end, start = 0, duration = 2000, delay = 0 }: UseCo
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
         
-        // Daha dengeli easing function - easeOutCubic
-        const easeOutCubic = 1 - Math.pow(1 - progress, 3);
-        const currentCount = Math.floor(start + difference * easeOutCubic);
-        
-        setCount(currentCount);
-        
+        // Linear (doğrusal) artış
+        const currentCount = Math.round(start + difference * progress);
         if (progress < 1) {
-          // Daha az sıklıkta güncelleme yaparak performansı artır
-          setTimeout(updateCounter, 16); // ~60fps yerine daha az
+          setCount(currentCount);
+          setTimeout(updateCounter, 16);
+        } else {
+          setCount(end); // Son değeri garanti et
         }
       };
       

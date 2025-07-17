@@ -91,7 +91,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2025 TechFix Pro. Tüm hakları saklıdır.</p>
+          <p>&copy; 2025 Zero Teknik. Tüm hakları saklıdır.</p>
         </div>
       </div>
     </footer>

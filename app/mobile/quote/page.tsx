@@ -345,36 +345,6 @@ const QuotePage = () => {
                           ))}
                         </select>
                       </div>
-                      <div>
-                        <label htmlFor="preferredDate" className="block text-sm font-medium text-gray-700 mb-2">
-                          Tercih Edilen Tarih
-                        </label>
-                        <input
-                          type="date"
-                          id="preferredDate"
-                          name="preferredDate"
-                          value={formData.preferredDate}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        />
-                      </div>
-                      <div className="md:col-span-2">
-                        <label htmlFor="preferredTime" className="block text-sm font-medium text-gray-700 mb-2">
-                          Tercih Edilen Saat
-                        </label>
-                        <select
-                          id="preferredTime"
-                          name="preferredTime"
-                          value={formData.preferredTime}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        >
-                          <option value="">Herhangi bir saat</option>
-                          <option value="morning">Sabah (9:00 - 12:00)</option>
-                          <option value="afternoon">Öğleden Sonra (12:00 - 17:00)</option>
-                          <option value="evening">Akşam (17:00 - 20:00)</option>
-                        </select>
-                      </div>
                     </div>
                   </div>
 

@@ -4,8 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Shield, Users, Award, Clock, CheckCircle, Star } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Hakkımızda | Profesyonel TV Tamir Uzmanları | TechFix Pro',
-  description: 'TechFix Pro hakkında bilgi edinin - İstanbul\'un lider TV tamir servisi, 10+ yıllık deneyim, uzman teknisyenler ve 5000+ mutlu müşteri.',
+  title: 'Hakkımızda | Profesyonel TV Tamir Uzmanları | Zero Teknik',
+  description: 'Zero Teknik hakkında bilgi edinin - İstanbul\'un lider TV tamir servisi, 10+ yıllık deneyim, uzman teknisyenler ve 5000+ mutlu müşteri.',
   keywords: 'hakkımızda TV tamir servisi, TV tamir şirketi İstanbul, profesyonel TV teknisyenleri',
 };
 
@@ -80,7 +80,7 @@ const AboutPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                TechFix Pro Hakkında
+                Zero Teknik Hakkında
                 <span className="block text-blue-600">TV Tamir Uzmanları</span>
               </h1>
               <p className="text-xl text-gray-600 mb-8">
@@ -130,7 +130,7 @@ const AboutPage = () => {
             </h2>
             <div className="text-lg text-gray-600 space-y-6">
               <p>
-                TechFix Pro, 2014 yılında basit bir misyonla kuruldu: İstanbul halkına dürüst, profesyonel ve uygun fiyatlı TV tamir hizmeti sunmak. Küçük bir tamir atölyesi olarak başlayan yolculuğumuz, şehrin en güvenilir TV tamir servisine dönüştü.
+                Zero Teknik, 2014 yılında basit bir misyonla kuruldu: İstanbul halkına dürüst, profesyonel ve uygun fiyatlı TV tamir hizmeti sunmak. Küçük bir tamir atölyesi olarak başlayan yolculuğumuz, şehrin en güvenilir TV tamir servisine dönüştü.
               </p>
               <p>
                 Yıllar içinde, eski CRT modellerden en yeni OLED ve QLED ekranlara kadar binlerce TV tamir ettik. Kaliteye, şeffaflığa ve müşteri memnuniyetine olan bağlılığımız, İstanbul\'da TV tamiri denince akla gelen uzmanlar olmamızı sağladı.
@@ -305,7 +305,7 @@ const AboutPage = () => {
             Uzman Servis Deneyimini Yaşayın
           </h2>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            TV tamirinde TechFix Pro'ya güvenen binlerce memnun müşterimize katılın. Hemen ücretsiz teklif alın!
+            TV tamirinde Zero Teknik'e güvenen binlerce memnun müşterimize katılın. Hemen ücretsiz teklif alın!
           </p>
           <div className="flex flex-col gap-4 w-full items-center">
             <Link href="/quote">

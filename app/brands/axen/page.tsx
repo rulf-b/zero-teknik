@@ -97,7 +97,7 @@ export default function AxenBrandPage() {
                       <svg className="w-9 h-9 text-blue-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l7 4v6c0 5.25-3.5 10-7 10s-7-4.75-7-10V6l7-4z"/></svg>
                     </span>
                     <span className="flex-1 text-base md:text-lg font-semibold text-gray-700 flex items-center">
-                      <span className="text-blue-600 font-bold">6 Ay Garanti</span>
+                      <span className="text-blue-600 font-bold">12 Ay Garanti</span>
                     </span>
                   </span>
                   <span className="flex flex-row items-center gap-3">

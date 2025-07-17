@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Calendar, User, ArrowRight, Search } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'TV Tamir Blogu & Rehberler | TechFix Pro',
+  title: 'TV Tamir Blogu & Rehberler | Zero Teknik',
   description: 'TV tamiri hakkında uzman ipuçları, sorun giderme rehberleri ve sektörden güncel bilgiler. TV bakımını öğrenin, cihazlarınızı daha uzun ömürlü kullanın.',
   keywords: 'TV tamir blogu, TV sorun giderme, TV bakım ipuçları, TV tamir rehberleri',
 };

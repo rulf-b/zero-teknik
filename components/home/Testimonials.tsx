@@ -10,7 +10,7 @@ const Testimonials = () => {
       name: 'Ahmet Yılmaz',
       location: 'İstanbul, Kadıköy',
       rating: 5,
-      text: 'Samsung 55" TV ekranım tamamen kırılmıştı. TechFix Pro sadece 2 saatte mükemmel yeni bir panelle değiştirdi. Kalite harika ve fiyat çok makuldü.',
+      text: 'Samsung 55" TV ekranım tamamen kırılmıştı. Zero Teknik sadece 2 saatte mükemmel yeni bir panelle değiştirdi. Kalite harika ve fiyat çok makuldü.',
       service: 'TV Ekran Değişimi',
       date: '2 hafta önce'
     },
@@ -93,6 +93,10 @@ const Testimonials = () => {
     return () => clearTimeout(timer);
   }, [isTransitionEnabled]);
 
+  // Sayaçlar için hook'ları en üstte tanımla
+  const tvsCount = useCounter({ end: 5000, start: 0, duration: 2000, delay: 0 });
+  const successCount = useCounter({ end: 99, start: 0, duration: 1800, delay: 0 });
+
   if (testimonials.length === 0) {
     return null;
   }
@@ -163,7 +167,7 @@ const Testimonials = () => {
                 <Tv2 className="w-7 h-7 text-blue-600" />
               </div>
               <div className="text-3xl font-bold text-blue-600 mb-1">
-                {useCounter({ end: 5000, start: 0, duration: 2000 })}+
+                {tvsCount}+
               </div>
               <div className="text-gray-700 font-semibold mb-1">Onarılan TV</div>
               <div className="text-xs text-gray-500">Tüm marka ve modeller</div>
@@ -185,7 +189,7 @@ const Testimonials = () => {
                 <Award className="w-7 h-7 text-green-600" />
               </div>
               <div className="text-3xl font-bold text-blue-600 mb-1">
-                %{useCounter({ end: 99, start: 0, duration: 1800 })}
+                %{successCount}
               </div>
               <div className="text-gray-700 font-semibold mb-1">Başarı Oranı</div>
               <div className="text-xs text-gray-500">Yüksek müşteri memnuniyeti</div>
