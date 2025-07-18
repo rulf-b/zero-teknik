@@ -7,6 +7,7 @@ import { Calendar, User, ArrowRight, Search } from 'lucide-react';
 const BlogPage = () => {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     fetch('/api/blog-posts')
@@ -16,6 +17,14 @@ const BlogPage = () => {
         setLoading(false);
       });
   }, []);
+
+  const filteredPosts = blogPosts.filter((post: any) => {
+    const q = search.toLowerCase();
+    return (
+      post.title?.toLowerCase().includes(q) ||
+      post.excerpt?.toLowerCase().includes(q)
+    );
+  });
 
   const categories = [
     'Tüm Yazılar',
@@ -38,35 +47,23 @@ const BlogPage = () => {
               type="text"
               placeholder="Makalelerde ara..."
               className="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
             />
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
           </div>
         </div>
       </section>
-      <section className="py-8 bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category, index) => (
-              <Button
-                key={index}
-                variant={index === 0 ? "default" : "outline"}
-                className={index === 0 ? "bg-blue-600 hover:bg-blue-700 text-white" : "border-gray-300 text-gray-700 hover:bg-gray-50"}
-              >
-                {category}
-              </Button>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Remove the category button section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {loading ? (
             <div>Yükleniyor...</div>
-          ) : blogPosts.length === 0 ? (
+          ) : filteredPosts.length === 0 ? (
             <div>Blog yazısı bulunamadı.</div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {blogPosts.map((post, index) => (
+              {filteredPosts.map((post, index) => (
                 <Link key={post.id || index} href={`/blog/${post.id}`} className="block group">
                   <article
                     key={post.id || index}

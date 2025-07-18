@@ -13,7 +13,7 @@ const ISSUES = ['Kırık Ekran', 'Siyah Ekran', 'Arka Aydınlatma Sorunları', '
 const AUTHOR_OPTIONS = ['Zero TV Servisi', 'Teknoloji Editörü'];
 
 // İngilizce sorunları Türkçeye çeviren yardımcı fonksiyon
-function getTurkishIssue(issue) {
+function getTurkishIssue(issue: any) {
   switch(issue) {
     case 'Cracked Screen': return 'Kırık Ekran';
     case 'Black Screen': return 'Siyah Ekran';
@@ -31,7 +31,7 @@ const AdminPanel = () => {
   const [login, setLogin] = useState({ username: "", password: "" });
   const [loginError, setLoginError] = useState("");
   const [section, setSection] = useState("applications");
-  const { prices, updatePrice, loading } = usePrices();
+  const { prices, updatePrice, refreshPrices, loading } = usePrices();
   
   // Fiyat yönetimi state'leri
   const [selectedBrand, setSelectedBrand] = useState('');
@@ -238,6 +238,9 @@ const AdminPanel = () => {
     // Context'i güncelle
     updatePrice(selectedBrand as any, brandPrices);
     
+    // Fiyatları yenile
+    await refreshPrices();
+    
     alert('Fiyat başarıyla kaydedildi!');
     setCurrentPriceRange(rangeString);
   };
@@ -270,6 +273,10 @@ const AdminPanel = () => {
     });
     
     updatePrice('generalQuoteRange' as any, rangeString);
+    
+    // Fiyatları yenile
+    await refreshPrices();
+    
     alert('Genel fiyat aralığı kaydedildi!');
   };
 
@@ -325,6 +332,9 @@ const AdminPanel = () => {
     
     // Context'i güncelle
     updatePrice(selectedBrand as any, brandPrices);
+    
+    // Fiyatları yenile
+    await refreshPrices();
     
     alert('Yeni fiyat başarıyla eklendi!');
     setCurrentPriceRange(rangeString);
@@ -721,7 +731,7 @@ const AdminPanel = () => {
             type="text"
             placeholder="Kullanıcı Adı"
             value={login.username}
-            onChange={e => setLogin(v => ({ ...v, username: e.target.value }))}
+            onChange={(e: any) => setLogin((v: any) => ({ ...v, username: e.target.value }))}
             className="w-full mb-4 px-3 py-2 border rounded"
             autoFocus
           />
@@ -729,7 +739,7 @@ const AdminPanel = () => {
             type="password"
             placeholder="Şifre"
             value={login.password}
-            onChange={e => setLogin(v => ({ ...v, password: e.target.value }))}
+            onChange={(e: any) => setLogin((v: any) => ({ ...v, password: e.target.value }))}
             className="w-full mb-4 px-3 py-2 border rounded"
           />
           {loginError && <div className="text-red-600 mb-4 text-sm">{loginError}</div>}
@@ -798,51 +808,83 @@ const AdminPanel = () => {
       
       <div className="bg-white rounded shadow p-6">
         {section === "applications" && (
-          <div>
+          <div className="overflow-x-auto">
             <h2 className="text-xl font-bold mb-4">Ücretsiz Teşhis Başvuruları</h2>
             {loadingApps ? (
               <div>Yükleniyor...</div>
             ) : applications.length === 0 ? (
               <div>Başvuru yok.</div>
             ) : (
-              <table className="w-full text-sm border">
+              <table className="w-full text-sm border min-w-[900px]">
                 <thead>
                   <tr className="bg-gray-100">
-                    <th className="p-2 border">Ad Soyad</th>
-                    <th className="p-2 border">Telefon</th>
-                    <th className="p-2 border">E-posta</th>
-                    <th className="p-2 border">Marka</th>
-                    <th className="p-2 border">Model</th>
-                    <th className="p-2 border">Sorun</th>
-                    <th className="p-2 border">Açıklama</th>
-                    <th className="p-2 border">Lokasyon</th>
-                    <th className="p-2 border">Tarih</th>
-                    <th className="p-2 border">Durum</th>
-                    <th className="p-2 border">İşlem</th>
+                    <th className="p-2 border whitespace-nowrap">Ad Soyad</th>
+                    <th className="p-2 border whitespace-nowrap">Telefon</th>
+                    <th className="p-2 border whitespace-nowrap">E-posta</th>
+                    <th className="p-2 border whitespace-nowrap">Marka</th>
+                    <th className="p-2 border whitespace-nowrap">Model</th>
+                    <th className="p-2 border whitespace-nowrap">Sorun</th>
+                    <th className="p-2 border whitespace-nowrap">Açıklama</th>
+                    <th className="p-2 border whitespace-nowrap">Lokasyon</th>
+                    <th className="p-2 border whitespace-nowrap">Tarih</th>
+                    <th className="p-2 border whitespace-nowrap">Durum</th>
+                    <th className="p-2 border whitespace-nowrap">İşlem</th>
                   </tr>
                 </thead>
                 <tbody>
                   {applications.map((app) => (
                     <tr key={app.id} className={app.read ? "bg-gray-50" : "bg-yellow-50"}>
-                      <td className="border p-2">{app.name}</td>
-                      <td className="border p-2">{app.phone}</td>
-                      <td className="border p-2">{app.email || ''}</td>
-                      <td className="border p-2">{app.brand || app.tvBrand}</td>
-                      <td className="border p-2">{app.model || app.tvModel}</td>
-                      <td className="border p-2">{getTurkishIssue(app.issue || app.issueType)}</td>
-                      <td className="border p-2 max-w-xs" style={{maxWidth: '300px'}}>
-                        {app.description && app.description.length > 60 ? (
-                          <>
-                            <span className="truncate inline-block align-middle" style={{maxWidth: '180px', verticalAlign: 'middle', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>{app.description}</span>
-                            <button className="ml-2 px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded hover:bg-blue-200" onClick={() => setDescModal({open: true, text: app.description})}>Detay</button>
-                          </>
+                      <td className="border p-2 max-w-xs whitespace-nowrap overflow-hidden text-ellipsis" style={{maxWidth: '180px'}}>
+                        {app.name && app.name.length > 24 ? (
+                          <button className="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded hover:bg-blue-200" onClick={() => setDescModal({open: true, text: app.name})}>Detay</button>
                         ) : (
-                          app.description || ''
+                          app.name
                         )}
                       </td>
-                      <td className="border p-2">{app.location}</td>
-                      <td className="border p-2">{app.createdAt ? new Date(app.createdAt).toLocaleString() : "-"}</td>
-                      <td className="border p-2">
+                      <td className="border p-2 max-w-xs whitespace-nowrap overflow-hidden text-ellipsis" style={{maxWidth: '140px'}}>
+                        {app.phone && app.phone.length > 18 ? (
+                          <button className="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded hover:bg-blue-200" onClick={() => setDescModal({open: true, text: app.phone})}>Detay</button>
+                        ) : (
+                          app.phone
+                        )}
+                      </td>
+                      <td className="border p-2 max-w-xs whitespace-nowrap overflow-hidden text-ellipsis" style={{maxWidth: '180px'}}>
+                        {app.email && app.email.length > 24 ? (
+                          <button className="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded hover:bg-blue-200" onClick={() => setDescModal({open: true, text: app.email})}>Detay</button>
+                        ) : (
+                          app.email
+                        )}
+                      </td>
+                      <td className="border p-2 max-w-xs whitespace-nowrap overflow-hidden text-ellipsis" style={{maxWidth: '120px'}}>
+                        {(app.brand || app.tvBrand) && (app.brand || app.tvBrand).length > 18 ? (
+                          <button className="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded hover:bg-blue-200" onClick={() => setDescModal({open: true, text: app.brand || app.tvBrand})}>Detay</button>
+                        ) : (
+                          app.brand || app.tvBrand
+                        )}
+                      </td>
+                      <td className="border p-2 max-w-xs whitespace-nowrap overflow-hidden text-ellipsis" style={{maxWidth: '120px'}}>
+                        {(app.model || app.tvModel) && (app.model || app.tvModel).length > 18 ? (
+                          <button className="px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded hover:bg-blue-200" onClick={() => setDescModal({open: true, text: app.model || app.tvModel})}>Detay</button>
+                        ) : (
+                          app.model || app.tvModel
+                        )}
+                      </td>
+                      <td className="border p-2 whitespace-nowrap">{getTurkishIssue(app.issue || app.issueType)}</td>
+                      <td className="border p-2 max-w-xs" style={{maxWidth: '300px'}}>
+                        {app.issueDescription || app.description ? (
+                          (app.issueDescription || app.description).length > 60 ? (
+                            <>
+                              <span className="truncate inline-block align-middle" style={{maxWidth: '180px', verticalAlign: 'middle', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>{app.issueDescription || app.description}</span>
+                              <button className="ml-2 px-2 py-1 text-xs bg-blue-100 text-blue-700 rounded hover:bg-blue-200" onClick={() => setDescModal({open: true, text: app.issueDescription || app.description})}>Detay</button>
+                            </>
+                          ) : (
+                            app.issueDescription || app.description
+                          )
+                        ) : ''}
+                      </td>
+                      <td className="border p-2 whitespace-nowrap">{app.location}</td>
+                      <td className="border p-2 whitespace-nowrap">{app.createdAt ? new Date(app.createdAt).toLocaleString() : "-"}</td>
+                      <td className="border p-2 whitespace-nowrap">
                         {app.read ? "Okundu" : "Yeni"}
                         <button
                           className="ml-2 text-xs text-blue-600 underline"
@@ -851,7 +893,7 @@ const AdminPanel = () => {
                           {app.read ? "Yeniden işaretle" : "Okundu yap"}
                         </button>
                       </td>
-                      <td className="border p-2">
+                      <td className="border p-2 whitespace-nowrap">
                         <button
                           className="text-xs text-red-600 underline"
                           onClick={() => deleteApplication(app.id)}
@@ -880,7 +922,7 @@ const AdminPanel = () => {
                   <input
                     type="number"
                     value={generalPriceRange.start}
-                    onChange={(e) => setGeneralPriceRange(v => ({ ...v, start: e.target.value }))}
+                    onChange={(e: any) => setGeneralPriceRange(v => ({ ...v, start: e.target.value }))}
                     className="w-32 p-2 border rounded"
                     placeholder="1000"
                   />
@@ -890,7 +932,7 @@ const AdminPanel = () => {
                   <input
                     type="number"
                     value={generalPriceRange.end}
-                    onChange={(e) => setGeneralPriceRange(v => ({ ...v, end: e.target.value }))}
+                    onChange={(e: any) => setGeneralPriceRange(v => ({ ...v, end: e.target.value }))}
                     className="w-32 p-2 border rounded"
                     placeholder="5000"
                   />
@@ -914,7 +956,7 @@ const AdminPanel = () => {
                   <label className="block text-sm font-medium mb-2">Marka</label>
                   <select
                     value={selectedBrand}
-                    onChange={(e) => setSelectedBrand(e.target.value)}
+                    onChange={(e: any) => setSelectedBrand(e.target.value)}
                     className="w-full p-2 border rounded"
                   >
                     <option value="">Marka Seçin</option>
@@ -928,7 +970,7 @@ const AdminPanel = () => {
                   <label className="block text-sm font-medium mb-2">Boyut</label>
                   <select
                     value={selectedSize}
-                    onChange={(e) => setSelectedSize(e.target.value)}
+                    onChange={(e: any) => setSelectedSize(e.target.value)}
                     className="w-full p-2 border rounded"
                   >
                     <option value="">Boyut Seçin</option>
@@ -942,7 +984,7 @@ const AdminPanel = () => {
                   <label className="block text-sm font-medium mb-2">Sorun Tipi</label>
                   <select
                     value={selectedIssue}
-                    onChange={(e) => setSelectedIssue(e.target.value)}
+                    onChange={(e: any) => setSelectedIssue(e.target.value)}
                     className="w-full p-2 border rounded"
                   >
                     <option value="">Sorun Seçin</option>
@@ -985,7 +1027,7 @@ const AdminPanel = () => {
                       <input
                         type="number"
                         value={priceRange.start}
-                        onChange={(e) => setPriceRange(v => ({ ...v, start: e.target.value }))}
+                        onChange={(e: any) => setPriceRange(v => ({ ...v, start: e.target.value }))}
                         className="w-32 p-2 border rounded"
                         placeholder="1000"
                       />
@@ -995,7 +1037,7 @@ const AdminPanel = () => {
                       <input
                         type="number"
                         value={priceRange.end}
-                        onChange={(e) => setPriceRange(v => ({ ...v, end: e.target.value }))}
+                        onChange={(e: any) => setPriceRange(v => ({ ...v, end: e.target.value }))}
                         className="w-32 p-2 border rounded"
                         placeholder="5000"
                       />
@@ -1049,7 +1091,7 @@ const AdminPanel = () => {
                   <input
                     type="text"
                     value={newBrand.name}
-                    onChange={(e) => setNewBrand(v => ({ ...v, name: e.target.value }))}
+                    onChange={(e: any) => setNewBrand(v => ({ ...v, name: e.target.value }))}
                     className="w-full p-2 border rounded"
                     placeholder="Samsung"
                   />
@@ -1059,7 +1101,7 @@ const AdminPanel = () => {
                   <input
                     type="file"
                     accept="image/*"
-                    onChange={async (e) => {
+                    onChange={async (e: any) => {
                       const file = e.target.files?.[0];
                       if (!file) return;
                       setLoadingBrands(true);
@@ -1113,14 +1155,14 @@ const AdminPanel = () => {
                           <input
                             type="text"
                             value={editingBrand.name}
-                            onChange={(e) => setEditingBrand(v => ({ ...v, name: e.target.value }))}
+                            onChange={(e: any) => setEditingBrand(v => ({ ...v, name: e.target.value }))}
                             className="w-full p-2 border rounded"
                           />
                           {/* Logo yükleme alanı */}
                           <input
                             type="file"
                             accept="image/*"
-                            onChange={async (e) => {
+                            onChange={async (e: any) => {
                               const file = e.target.files?.[0];
                               if (!file) return;
                               setLoadingBrands(true);
@@ -1213,7 +1255,7 @@ const AdminPanel = () => {
                   <label className="block text-sm font-medium mb-2">Marka</label>
                   <select
                     value={newModel.brand}
-                    onChange={(e) => setNewModel(v => ({ ...v, brand: e.target.value }))}
+                    onChange={(e: any) => setNewModel(v => ({ ...v, brand: e.target.value }))}
                     className="w-full p-2 border rounded"
                   >
                     <option value="">Marka Seçin</option>
@@ -1227,7 +1269,7 @@ const AdminPanel = () => {
                   <input
                     type="text"
                     value={newModel.model}
-                    onChange={(e) => setNewModel(v => ({ ...v, model: e.target.value }))}
+                    onChange={(e: any) => setNewModel(v => ({ ...v, model: e.target.value }))}
                     className="w-full p-2 border rounded"
                     placeholder="55NU7100"
                   />
@@ -1266,7 +1308,7 @@ const AdminPanel = () => {
                               <td className="border p-2">
                                 <select
                                   value={editingModel.brand}
-                                  onChange={(e) => setEditingModel(v => ({ ...v, brand: e.target.value }))}
+                                  onChange={(e: any) => setEditingModel(v => ({ ...v, brand: e.target.value }))}
                                   className="w-full p-1 border rounded"
                                 >
                                   {brands.map(brand => (
@@ -1278,7 +1320,7 @@ const AdminPanel = () => {
                                 <input
                                   type="text"
                                   value={editingModel.model}
-                                  onChange={(e) => setEditingModel(v => ({ ...v, model: e.target.value }))}
+                                  onChange={(e: any) => setEditingModel(v => ({ ...v, model: e.target.value }))}
                                   className="w-full p-1 border rounded"
                                 />
                               </td>
@@ -1348,7 +1390,7 @@ const AdminPanel = () => {
                   <input
                     type="text"
                     value={siteSettings.companyName}
-                    onChange={(e) => setSiteSettings((v: any) => ({ ...v, companyName: e.target.value }))}
+                    onChange={(e: any) => setSiteSettings((v: any) => ({ ...v, companyName: e.target.value }))}
                     className="w-full p-2 border rounded"
                   />
                 </div>
@@ -1357,7 +1399,7 @@ const AdminPanel = () => {
                   <input
                     type="text"
                     value={siteSettings.phone}
-                    onChange={(e) => setSiteSettings((v: any) => ({ ...v, phone: e.target.value }))}
+                    onChange={(e: any) => setSiteSettings((v: any) => ({ ...v, phone: e.target.value }))}
                     className="w-full p-2 border rounded"
                   />
                 </div>
@@ -1366,7 +1408,7 @@ const AdminPanel = () => {
                   <input
                     type="email"
                     value={siteSettings.email}
-                    onChange={(e) => setSiteSettings((v: any) => ({ ...v, email: e.target.value }))}
+                    onChange={(e: any) => setSiteSettings((v: any) => ({ ...v, email: e.target.value }))}
                     className="w-full p-2 border rounded"
                   />
                 </div>
@@ -1375,7 +1417,7 @@ const AdminPanel = () => {
                   <input
                     type="text"
                     value={siteSettings.whatsapp}
-                    onChange={(e) => setSiteSettings((v: any) => ({ ...v, whatsapp: e.target.value }))}
+                    onChange={(e: any) => setSiteSettings((v: any) => ({ ...v, whatsapp: e.target.value }))}
                     className="w-full p-2 border rounded"
                   />
                 </div>
@@ -1384,7 +1426,7 @@ const AdminPanel = () => {
                   <input
                     type="text"
                     value={siteSettings.address}
-                    onChange={(e) => setSiteSettings((v: any) => ({ ...v, address: e.target.value }))}
+                    onChange={(e: any) => setSiteSettings((v: any) => ({ ...v, address: e.target.value }))}
                     className="w-full p-2 border rounded"
                   />
                 </div>
@@ -1392,7 +1434,7 @@ const AdminPanel = () => {
                   <label className="block text-sm font-medium mb-2">Açıklama</label>
                   <textarea
                     value={siteSettings.description}
-                    onChange={(e) => setSiteSettings((v: any) => ({ ...v, description: e.target.value }))}
+                    onChange={(e: any) => setSiteSettings((v: any) => ({ ...v, description: e.target.value }))}
                     className="w-full p-2 border rounded"
                     rows={3}
                   />
@@ -1415,7 +1457,7 @@ const AdminPanel = () => {
                   <input
                     type="text"
                     value={siteSettings.homepageHero?.title || ''}
-                    onChange={e => setSiteSettings((v: any) => ({
+                    onChange={(e: any) => setSiteSettings((v: any) => ({
                       ...v,
                       homepageHero: { ...v.homepageHero, title: e.target.value, stats: { ...v.homepageHero?.stats } }
                     }))}
@@ -1427,7 +1469,7 @@ const AdminPanel = () => {
                   <input
                     type="text"
                     value={siteSettings.homepageHero?.subtitle || ''}
-                    onChange={e => setSiteSettings((v: any) => ({
+                    onChange={(e: any) => setSiteSettings((v: any) => ({
                       ...v,
                       homepageHero: { ...v.homepageHero, subtitle: e.target.value, stats: { ...v.homepageHero?.stats } }
                     }))}
@@ -1439,7 +1481,7 @@ const AdminPanel = () => {
                   <input
                     type="number"
                     value={siteSettings.homepageHero?.stats?.years || ''}
-                    onChange={e => setSiteSettings((v: any) => ({
+                    onChange={(e: any) => setSiteSettings((v: any) => ({
                       ...v,
                       homepageHero: {
                         ...v.homepageHero,
@@ -1454,7 +1496,7 @@ const AdminPanel = () => {
                   <input
                     type="text"
                     value={siteSettings.homepageHero?.stats?.yearsLabel || ''}
-                    onChange={e => setSiteSettings((v: any) => ({
+                    onChange={(e: any) => setSiteSettings((v: any) => ({
                       ...v,
                       homepageHero: {
                         ...v.homepageHero,
@@ -1469,7 +1511,7 @@ const AdminPanel = () => {
                   <input
                     type="number"
                     value={siteSettings.homepageHero?.stats?.repairedTVs || ''}
-                    onChange={e => setSiteSettings((v: any) => ({
+                    onChange={(e: any) => setSiteSettings((v: any) => ({
                       ...v,
                       homepageHero: {
                         ...v.homepageHero,
@@ -1484,7 +1526,7 @@ const AdminPanel = () => {
                   <input
                     type="text"
                     value={siteSettings.homepageHero?.stats?.repairedTVsLabel || ''}
-                    onChange={e => setSiteSettings((v: any) => ({
+                    onChange={(e: any) => setSiteSettings((v: any) => ({
                       ...v,
                       homepageHero: {
                         ...v.homepageHero,
@@ -1499,7 +1541,7 @@ const AdminPanel = () => {
                   <input
                     type="text"
                     value={siteSettings.homepageHero?.stats?.support || ''}
-                    onChange={e => setSiteSettings((v: any) => ({
+                    onChange={(e: any) => setSiteSettings((v: any) => ({
                       ...v,
                       homepageHero: {
                         ...v.homepageHero,
@@ -1514,7 +1556,7 @@ const AdminPanel = () => {
                   <input
                     type="text"
                     value={siteSettings.homepageHero?.stats?.supportLabel || ''}
-                    onChange={e => setSiteSettings((v: any) => ({
+                    onChange={(e: any) => setSiteSettings((v: any) => ({
                       ...v,
                       homepageHero: {
                         ...v.homepageHero,
@@ -1666,7 +1708,7 @@ const AdminPanel = () => {
                   accept="image/*"
                   style={{ display: 'none' }}
                   ref={el => (window._sliderFileInput = el)}
-                  onChange={async (e) => {
+                  onChange={async (e: any) => {
                     const file = e.target.files?.[0];
                     if (!file) return;
                     setSiteSettings((v: any) => ({ ...v, _sliderUploading: true }));
@@ -1717,7 +1759,7 @@ const AdminPanel = () => {
                   <input
                     type="text"
                     value={newBlogPost.title}
-                    onChange={(e) => setNewBlogPost((v: any) => ({ ...v, title: e.target.value }))}
+                    onChange={(e: any) => setNewBlogPost((v: any) => ({ ...v, title: e.target.value }))}
                     className="w-full p-2 border rounded"
                     placeholder="Blog yazısı başlığı"
                   />
@@ -1726,7 +1768,7 @@ const AdminPanel = () => {
                   <label className="block text-sm font-medium mb-2">Özet</label>
                   <textarea
                     value={newBlogPost.excerpt}
-                    onChange={(e) => setNewBlogPost((v: any) => ({ ...v, excerpt: e.target.value }))}
+                    onChange={(e: any) => setNewBlogPost((v: any) => ({ ...v, excerpt: e.target.value }))}
                     className="w-full p-2 border rounded"
                     rows={2}
                     placeholder="Blog yazısı özeti"
@@ -1780,7 +1822,7 @@ const AdminPanel = () => {
                   <input
                     type="text"
                     value={newBlogPost.tags}
-                    onChange={(e) => setNewBlogPost((v: any) => ({ ...v, tags: e.target.value }))}
+                    onChange={(e: any) => setNewBlogPost((v: any) => ({ ...v, tags: e.target.value }))}
                     className="w-full p-2 border rounded"
                     placeholder="tv tamiri, ekran değişimi, servis"
                   />
@@ -1789,7 +1831,7 @@ const AdminPanel = () => {
                   <label className="block text-sm font-medium mb-2">İçerik</label>
                   <textarea
                     value={newBlogPost.content}
-                    onChange={(e) => setNewBlogPost((v: any) => ({ ...v, content: e.target.value }))}
+                    onChange={(e: any) => setNewBlogPost((v: any) => ({ ...v, content: e.target.value }))}
                     className="w-full p-2 border rounded"
                     rows={6}
                     placeholder="Blog yazısı içeriği..."
@@ -1820,12 +1862,12 @@ const AdminPanel = () => {
                           <input
                             type="text"
                             value={editingBlogPost.title}
-                            onChange={(e) => setEditingBlogPost((v: any) => ({ ...v, title: e.target.value }))}
+                            onChange={(e: any) => setEditingBlogPost((v: any) => ({ ...v, title: e.target.value }))}
                             className="w-full p-2 border rounded font-semibold"
                           />
                           <textarea
                             value={editingBlogPost.excerpt}
-                            onChange={(e) => setEditingBlogPost((v: any) => ({ ...v, excerpt: e.target.value }))}
+                            onChange={(e: any) => setEditingBlogPost((v: any) => ({ ...v, excerpt: e.target.value }))}
                             className="w-full p-2 border rounded"
                             rows={2}
                           />
@@ -1833,7 +1875,7 @@ const AdminPanel = () => {
                             <input
                               type="text"
                               value={editingBlogPost.author}
-                              onChange={(e) => setEditingBlogPost((v: any) => ({ ...v, author: e.target.value }))}
+                              onChange={(e: any) => setEditingBlogPost((v: any) => ({ ...v, author: e.target.value }))}
                               className="w-full p-2 border rounded"
                               placeholder="Yazar"
                             />
@@ -1842,7 +1884,7 @@ const AdminPanel = () => {
                               <input
                                 type="file"
                                 accept="image/*"
-                                onChange={async (e) => {
+                                onChange={async (e: any) => {
                                   const file = e.target.files?.[0];
                                   if (!file) return;
                                   setUploadingImage(true);
@@ -1875,7 +1917,7 @@ const AdminPanel = () => {
                           </div>
                           <textarea
                             value={editingBlogPost.content}
-                            onChange={(e) => setEditingBlogPost((v: any) => ({ ...v, content: e.target.value }))}
+                            onChange={(e: any) => setEditingBlogPost((v: any) => ({ ...v, content: e.target.value }))}
                             className="w-full p-2 border rounded"
                             rows={4}
                           />
@@ -2066,7 +2108,7 @@ function ServicesAdmin() {
   const [services, setServices] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState<any>(null);
-  const [newService, setNewService] = useState<any>({ title: '', description: '', features: [''], price: '', icon: '', image: '', href: '' });
+  const [newService, setNewService] = useState<any>({ title: '', description: '', features: [''], price: '', priceRange: '', icon: '', image: '', href: '', popular: false });
   const [uploadingImage, setUploadingImage] = useState(false);
 
   useEffect(() => {
@@ -2085,6 +2127,75 @@ function ServicesAdmin() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updated)
     });
+    
+    // Fiyatları senkronize et - prices.json'ı da güncelle
+    try {
+      const pricesRes = await fetch('/api/prices');
+      const prices = await pricesRes.json();
+      
+      // Hizmet fiyatlarını prices.json'a yansıt
+      updated.forEach(service => {
+        // Önceden tanımlı hizmetler için özel mapping
+        switch (service.title) {
+          case 'TV Ekran Değişimi':
+            if (service.priceRange && service.priceRange.includes('₺')) {
+              const match = service.priceRange.match(/₺([0-9,]+)/);
+              if (match) {
+                prices.screenReplacement = match[1].replace(/,/g, '');
+              }
+            }
+            break;
+          case 'LED Panel & Arka Aydınlatma Tamiri':
+            if (service.priceRange) {
+              prices.ledRepairRange = service.priceRange;
+            }
+            break;
+          case 'Anakart & Logic Board Tamiri':
+            if (service.priceRange) {
+              prices.motherboardRepairRange = service.priceRange;
+            }
+            break;
+          case 'Genel TV Tamiri':
+            if (service.priceRange) {
+              prices.generalQuoteRange = service.priceRange;
+            }
+            break;
+          default:
+            // Yeni hizmetler için dinamik mapping
+            if (service.priceRange) {
+              // Hizmet adından key oluştur
+              const serviceKey = service.title
+                .toLowerCase()
+                .replace(/[^a-z0-9\s]/g, '')
+                .replace(/\s+/g, '')
+                .replace(/tamiri|tamir|değişimi|değişim|onarımı|onarım/g, '')
+                .trim();
+              
+              // Fiyat aralığını kaydet
+              prices[`${serviceKey}Range`] = service.priceRange;
+              
+              // Tek fiyat varsa onu da kaydet
+              if (service.price && service.price !== 'Fiyat için teklif alın') {
+                const priceMatch = service.price.match(/₺([0-9,]+)/);
+                if (priceMatch) {
+                  prices[serviceKey] = priceMatch[1].replace(/,/g, '');
+                }
+              }
+            }
+            break;
+        }
+      });
+      
+      // Güncellenmiş fiyatları kaydet
+      await fetch('/api/prices', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(prices)
+      });
+    } catch (error) {
+      console.error('Fiyat senkronizasyonu hatası:', error);
+    }
+    
     setServices(updated);
     setLoading(false);
   };
@@ -2105,7 +2216,7 @@ function ServicesAdmin() {
   const handleAdd = async () => {
     if (!newService.title.trim()) return alert('Başlık gerekli');
     const updated = [...services, { ...newService, id: Date.now().toString() }];
-    setNewService({ title: '', description: '', features: [''], price: '', icon: '', image: '', href: '' });
+    setNewService({ title: '', description: '', features: [''], price: '', priceRange: '', icon: '', image: '', href: '', popular: false });
     await saveServices(updated);
   };
 
@@ -2131,8 +2242,8 @@ function ServicesAdmin() {
                 <input type="text" value={newService.price} onChange={e => setNewService((v: any) => ({ ...v, price: e.target.value }))} className="w-full p-2 border rounded" />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Detay Linki (Opsiyonel)</label>
-                <input type="text" value={newService.href} onChange={e => setNewService((v: any) => ({ ...v, href: e.target.value }))} className="w-full p-2 border rounded" />
+                <label className="block text-sm font-medium mb-2">Fiyat Aralığı</label>
+                <input type="text" value={newService.priceRange} onChange={e => setNewService((v: any) => ({ ...v, priceRange: e.target.value }))} className="w-full p-2 border rounded" placeholder="₺1000 - ₺2000" />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2">İkon (Lucide adı veya emoji)</label>
@@ -2140,7 +2251,7 @@ function ServicesAdmin() {
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2">Görsel (Opsiyonel)</label>
-                <input type="file" accept="image/*" onChange={async (e) => {
+                <input type="file" accept="image/*" onChange={async (e: any) => {
                   const file = e.target.files?.[0];
                   if (!file) return;
                   setUploadingImage(true);
@@ -2166,6 +2277,10 @@ function ServicesAdmin() {
                 ))}
                 <button type="button" onClick={() => setNewService((v: any) => ({ ...v, features: [...v.features, ''] }))} className="bg-blue-600 text-white px-4 py-1 rounded mt-2">Özellik Ekle</button>
               </div>
+              <div className="flex items-center mt-6">
+                <input type="checkbox" id="popular" checked={newService.popular} onChange={e => setNewService((v: any) => ({ ...v, popular: e.target.checked }))} className="mr-2" />
+                <label htmlFor="popular" className="text-sm font-medium">Popüler</label>
+              </div>
             </div>
             <button onClick={handleAdd} className="mt-4 bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">Hizmet Ekle</button>
           </div>
@@ -2182,11 +2297,11 @@ function ServicesAdmin() {
                         <input type="text" value={editing.title} onChange={e => setEditing((v: any) => ({ ...v, title: e.target.value }))} className="w-full p-2 border rounded" />
                         <input type="text" value={editing.description} onChange={e => setEditing((v: any) => ({ ...v, description: e.target.value }))} className="w-full p-2 border rounded" />
                         <input type="text" value={editing.price} onChange={e => setEditing((v: any) => ({ ...v, price: e.target.value }))} className="w-full p-2 border rounded" />
-                        <input type="text" value={editing.href} onChange={e => setEditing((v: any) => ({ ...v, href: e.target.value }))} className="w-full p-2 border rounded" />
+                        <input type="text" value={editing.priceRange} onChange={e => setEditing((v: any) => ({ ...v, priceRange: e.target.value }))} className="w-full p-2 border rounded" placeholder="₺1000 - ₺2000" />
                         <input type="text" value={editing.icon} onChange={e => setEditing((v: any) => ({ ...v, icon: e.target.value }))} className="w-full p-2 border rounded" />
                         <div className="flex gap-2 items-center">
                           <input type="text" value={editing.image} onChange={e => setEditing((v: any) => ({ ...v, image: e.target.value }))} className="w-full p-2 border rounded" />
-                          <input type="file" accept="image/*" onChange={async (e) => {
+                          <input type="file" accept="image/*" onChange={async (e: any) => {
                             const file = e.target.files?.[0];
                             if (!file) return;
                             setUploadingImage(true);
@@ -2214,6 +2329,10 @@ function ServicesAdmin() {
                         <div className="flex gap-2">
                           <button onClick={handleSaveEdit} className="bg-blue-600 text-white px-3 py-1 rounded text-sm">Kaydet</button>
                           <button onClick={() => setEditing(null)} className="bg-gray-500 text-white px-3 py-1 rounded text-sm">İptal</button>
+                        </div>
+                        <div className="flex items-center mt-2">
+                          <input type="checkbox" id={`popular-edit-${editing.idx}`} checked={!!editing.popular} onChange={e => setEditing((v: any) => ({ ...v, popular: e.target.checked }))} className="mr-2" />
+                          <label htmlFor={`popular-edit-${editing.idx}`} className="text-sm font-medium">Popüler</label>
                         </div>
                       </div>
                     ) : (

@@ -101,13 +101,12 @@ export default function XiaomiBrandPage() {
                       <span className="text-blue-600 font-bold">12 Ay Garanti</span>
                     </span>
                   </span>
-                  <span className="flex flex-row items-center gap-3">
+                  <span className="flex flex-row items-center gap-1">
                     <span className="w-10 flex justify-end items-center flex-shrink-0">
-                      {/* Badge Icon */}
-                      <svg className="w-10 h-10 text-blue-600 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M17 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h10zm-5 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                      <svg className="w-9 h-9 text-blue-600" fill="currentColor" viewBox="0 0 24 24"><path d="M17 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h10zm-5 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm0 6c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
                     </span>
                     <span className="flex-1 text-base md:text-lg font-semibold text-gray-700 flex items-center">
-                      <span className="text-blue-600 font-bold">Sertifikalı Teknisyen</span>
+                      <span className="text-blue-600 font-bold ml-2">Sertifikalı<br />Teknisyen</span>
                     </span>
                   </span>
                   <span className="flex flex-row items-center gap-3">

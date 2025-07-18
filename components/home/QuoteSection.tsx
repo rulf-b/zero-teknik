@@ -186,7 +186,7 @@ const QuoteSection = () => {
               <div className="space-y-3">
                 <Link
                   href={{
-                    pathname: "/services/diagnosis-and-quote",
+                    pathname: "/quote",
                     query: {
                       brand: selectedBrand,
                       size: selectedSize,

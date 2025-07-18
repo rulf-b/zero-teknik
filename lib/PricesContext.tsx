@@ -7,6 +7,7 @@ interface PricesContextType {
   prices: SitePrices;
   setPrices: (prices: SitePrices) => void;
   updatePrice: (key: keyof SitePrices, value: any) => void;
+  refreshPrices: () => Promise<void>;
   loading: boolean;
 }
 
@@ -53,8 +54,22 @@ export const PricesProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  // Fiyatları yenile
+  const refreshPrices = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch('/api/prices');
+      const data = await res.json();
+      setPrices(data);
+    } catch (error) {
+      console.error('Fiyatlar yenilenirken hata:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <PricesContext.Provider value={{ prices: prices as SitePrices, setPrices, updatePrice, loading }}>
+    <PricesContext.Provider value={{ prices: prices as SitePrices, setPrices, updatePrice, refreshPrices, loading }}>
       {children}
     </PricesContext.Provider>
   );

@@ -2,57 +2,77 @@
   {
     "id": "1",
     "title": "TV Ekran Değişimi",
-    "description": "Kırık veya hasarlı TV ekranlarının profesyonel değişimi",
-    "icon": "🖥️",
+    "description": "Tüm büyük markalar için LCD, LED, OLED ve QLED ekran değişimi hizmeti.",
+    "icon": "Monitor",
     "features": [
-      "Orijinal ekran parçaları",
-      "Garantili işçilik",
-      "Hızlı teslimat",
-      "Ücretsiz teşhis"
+      "32\" - 85\" arası tüm ekran boyutları",
+      "Orijinal kalitede paneller",
+      "Aynı gün servis imkanı",
+      "12 ay garanti",
+      "Renk kalibrasyonu dahil",
+      "Profesyonel montaj"
     ],
     "price": "Fiyat için teklif alın",
-    "image": "/services/screen-replacement.jpg"
+    "priceRange": "₺800 - ₺3.500",
+    "image": "/services/screen-replacement.jpg",
+    "href": "/services/tv-screen-replacement",
+    "popular": true
   },
   {
     "id": "2",
-    "title": "Anakart Tamiri",
-    "description": "TV anakart sorunlarının uzman tamiri",
-    "icon": "🔧",
+    "title": "LED Panel & Arka Aydınlatma Tamiri",
+    "description": "Arka aydınlatma sorunları, LED şerit değişimi ve parlaklık problemleri çözümü.",
+    "icon": "Zap",
     "features": [
-      "Elektronik tamir",
-      "Parça değişimi",
-      "Test ve kontrol",
-      "Garanti"
+      "LED arka aydınlatma şerit değişimi",
+      "İnvertör kartı tamiri",
+      "Güç kaynağı onarımı",
+      "Parlaklık ayarı",
+      "Renk düzeltme",
+      "Edge-lit ve direct-lit LEDler"
     ],
     "price": "Fiyat için teklif alın",
-    "image": "/services/motherboard-repair.jpg"
+    "priceRange": "₺500 - ₺1.20466",
+    "image": "/services/led-replacement.jpg",
+    "href": "/services/led-replacement",
+    "popular": false
   },
   {
     "id": "3",
-    "title": "LED Aydınlatma Değişimi",
-    "description": "Arka aydınlatma sistemlerinin tamiri",
-    "icon": "💡",
+    "title": "Anakart & Logic Board Tamiri",
+    "description": "Gelişmiş anakart teşhisi ve bileşen bazında onarımlar.",
+    "icon": "Cpu",
     "features": [
-      "LED strip değişimi",
-      "Güç kaynağı tamiri",
-      "Kalite kontrol",
-      "Uzun ömürlü çözüm"
+      "Bileşen bazında teşhis",
+      "IC çip değişimi",
+      "Yazılım güncelleme & yükleme",
+      "Güç regülasyonu onarımı",
+      "HDMI port tamiri",
+      "Akıllı TV fonksiyonlarının geri kazandırılması"
     ],
     "price": "Fiyat için teklif alın",
-    "image": "/services/led-replacement.jpg"
+    "priceRange": "₺6002 - ₺1.8006",
+    "image": "/services/motherboard-repair.jpg",
+    "href": "/services/motherboard-repair",
+    "popular": false
   },
   {
     "id": "4",
-    "title": "Teşhis ve Teklif",
-    "description": "Ücretsiz arıza teşhisi ve fiyat teklifi",
-    "icon": "🔍",
+    "title": "Genel TV Tamiri",
+    "description": "Çeşitli sorunlar için kapsamlı TV tamir hizmetleri.",
+    "icon": "Wrench",
     "features": [
-      "Ücretsiz teşhis",
-      "Detaylı rapor",
-      "Fiyat teklifi",
-      "Hızlı yanıt"
+      "Ses problemleri",
+      "Uzaktan kumanda sorunları",
+      "Port ve konnektör tamiri",
+      "Ayak ve montaj onarımları",
+      "Yazılım sorun giderme",
+      "Performans optimizasyonu"
     ],
-    "price": "Ücretsiz",
-    "image": "/services/diagnosis.jpg"
+    "price": "Fiyat için teklif alın",
+    "priceRange": "₺200 - ₺800",
+    "image": "/services/general-repair.jpg",
+    "href": "/services/general-repair",
+    "popular": false
   }
-] 
+]

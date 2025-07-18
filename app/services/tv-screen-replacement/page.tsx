@@ -6,11 +6,10 @@ import { Button } from '@/components/ui/button';
 import { Monitor, Shield, Clock, Star, CheckCircle } from 'lucide-react';
 import { usePrices } from '@/lib/PricesContext';
 
-export const metadata: Metadata = {
-  title: 'TV Screen Replacement Service | LCD, LED, OLED Screen Repair',
-  description: 'Professional TV screen replacement for all brands. LCD, LED, OLED, QLED screens. Same-day service, 12-month warranty. Get quote now!',
-  keywords: 'TV screen replacement, LCD screen repair, LED screen replacement, OLED screen fix, broken TV screen',
-};
+// Metadata (moved from export for client component compatibility):
+// title: 'TV Screen Replacement Service | LCD, LED, OLED Screen Repair'
+// description: 'Professional TV screen replacement for all brands. LCD, LED, OLED, QLED screens. Same-day service, 12-month warranty. Get quote now!'
+// keywords: 'TV screen replacement, LCD screen repair, LED screen replacement, OLED screen fix, broken TV screen'
 
 const TVScreenReplacementPage = () => {
   const { prices, loading } = usePrices();
@@ -24,17 +23,17 @@ const TVScreenReplacementPage = () => {
     {
       name: 'LCD/LED Ekranlar',
       description: 'En yaygın tip, uygun fiyatlı değişim seçenekleri',
-      priceRange: '₺800 - ₺2,000'
+      priceRange: prices.screenReplacement ? `₺${prices.screenReplacement} - ₺${Math.round(Number(prices.screenReplacement) * 1.5)}` : 'Fiyat için teklif alın'
     },
     {
       name: 'OLED Ekranlar',
       description: 'Üstün kalite, derin siyahlar, canlı renkler',
-      priceRange: '₺1,500 - ₺3,500'
+      priceRange: prices.screenReplacement ? `₺${Math.round(Number(prices.screenReplacement) * 1.2)} - ₺${Math.round(Number(prices.screenReplacement) * 2)}` : 'Fiyat için teklif alın'
     },
     {
       name: 'QLED Ekranlar',
       description: 'Kuantum nokta teknolojisi, parlak ve renkli',
-      priceRange: '₺1,200 - ₺2,800'
+      priceRange: prices.screenReplacement ? `₺${Math.round(Number(prices.screenReplacement) * 1.1)} - ₺${Math.round(Number(prices.screenReplacement) * 1.8)}` : 'Fiyat için teklif alın'
     }
   ];
 

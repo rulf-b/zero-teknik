@@ -80,7 +80,7 @@ const Header = () => {
                 <span className="font-semibold">İletişim</span>
                 <span className="text-base font-medium text-gray-700 ml-2">+90 555 123 4567</span>
               </a>
-              <Link href="/services/diagnosis-and-quote" onClick={() => setIsMenuOpen(false)}>
+              <Link href="/quote" onClick={() => setIsMenuOpen(false)}>
                 <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white text-lg py-3 mt-2">Teklif Al</Button>
               </Link>
             </div>
@@ -103,7 +103,7 @@ const Header = () => {
               <Phone className="w-5 h-5 text-blue-600" />
               <span>İletişim</span>
             </a>
-            <Link href="/services/diagnosis-and-quote">
+            <Link href="/quote">
               <Button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-base font-bold shadow-md">Teklif Al</Button>
             </Link>
             <button className="p-2 ml-2 flex items-center text-lg font-bold" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Menüyü Aç/Kapat">
@@ -203,7 +203,7 @@ const Header = () => {
               </span>
               <span className="text-sm font-medium text-gray-700 group-hover:text-blue-700">+90 555 123 4567</span>
             </a>
-            <Link href="/services/diagnosis-and-quote">
+            <Link href="/quote">
               <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg font-bold shadow-md">Teklif Al</Button>
             </Link>
           </div>

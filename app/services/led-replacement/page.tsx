@@ -1,16 +1,14 @@
 "use client";
 
-import { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Zap, Shield, Clock, Star, CheckCircle } from 'lucide-react';
 import { usePrices } from '@/lib/PricesContext';
 
-export const metadata: Metadata = {
-  title: 'LED Panel Tamiri | TV LED Ekran Onarımı',
-  description: 'Tüm marka TV\u0027ler için hızlı ve garantili LED panel tamiri. Arka aydınlatma, ölü piksel, LED şerit değişimi ve daha fazlası. Aynı gün servis, 12 ay garanti.',
-  keywords: 'LED panel tamiri, TV LED onarım, arka aydınlatma, ölü piksel, LED şerit değişimi',
-};
+// Metadata bilgileri (client component'te export edilemez)
+// title: 'LED Panel Tamiri | TV LED Ekran Onarımı'
+// description: 'Tüm marka TV'ler için hızlı ve garantili LED panel tamiri. Arka aydınlatma, ölü piksel, LED şerit değişimi ve daha fazlası. Aynı gün servis, 12 ay garanti.'
+// keywords: 'LED panel tamiri, TV LED onarım, arka aydınlatma, ölü piksel, LED şerit değişimi'
 
 const arizalar = [
   'Arka aydınlatma arızası',

@@ -1,10 +1,10 @@
 {
-  "screenReplacement": "1801",
+  "screenReplacement": "800",
   "ledRepair": 900,
   "motherboardRepair": 1200,
   "samsung55nu7100": 1800,
-  "ledRepairRange": "₺500 - ₺2.000",
-  "motherboardRepairRange": "₺600 - ₺2.500",
+  "ledRepairRange": "₺500 - ₺1.20466",
+  "motherboardRepairRange": "₺6002 - ₺1.8006",
   "Samsung": {
     "32\"": {
       "Kırık Ekran": "₺970 ~ ₺1.450",
@@ -522,5 +522,6 @@
       "Güç Yok": 1975,
       "Diğer": 5975
     }
-  }
+  },
+  "generalQuoteRange": "₺200 - ₺800"
 }

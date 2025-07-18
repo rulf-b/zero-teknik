@@ -77,15 +77,13 @@ const Services = () => {
                 </ul>
                 <div className="flex items-center justify-between">
                   <div className="text-2xl font-bold text-blue-600">
-                    {service.price}
+                    {service.price && service.price.trim() !== '' ? service.price : 'Fiyat için teklif alın'}
                   </div>
-                  {service.href && (
-                    <Link href={service.href}>
-                      <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                        Detaylı Bilgi
-                      </Button>
-                    </Link>
-                  )}
+                  <Link href="/quote">
+                    <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                      Teklif Al
+                    </Button>
+                  </Link>
                 </div>
               </div>
             );

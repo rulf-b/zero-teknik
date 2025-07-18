@@ -6,11 +6,10 @@ import { Button } from '@/components/ui/button';
 import { Cpu, Shield, Clock, Star, CheckCircle } from 'lucide-react';
 import { usePrices } from '@/lib/PricesContext';
 
-export const metadata: Metadata = {
-  title: 'Anakart Tamiri | TV Anakart Onarımı',
-  description: 'Tüm marka TV\u0027ler için hızlı ve garantili anakart tamiri. Güç sorunları, görüntü gelmiyor, yazılım arızası ve daha fazlası. Aynı gün servis, 12 ay garanti.',
-  keywords: 'anakart tamiri, TV anakart onarım, güç arızası, yazılım sorunu, TV açılmıyor',
-};
+// Metadata (moved from export for client component compatibility):
+// title: 'Anakart Tamiri | TV Anakart Onarımı'
+// description: 'Tüm marka TV'ler için hızlı ve garantili anakart tamiri. Güç sorunları, görüntü gelmiyor, yazılım arızası ve daha fazlası. Aynı gün servis, 12 ay garanti.'
+// keywords: 'anakart tamiri, TV anakart onarım, güç arızası, yazılım sorunu, TV açılmıyor'
 
 const arizalar = [
   'TV açılmıyor',

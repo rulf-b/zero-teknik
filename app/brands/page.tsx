@@ -30,14 +30,25 @@ export default function BrandsPage() {
         Tüm büyük TV markaları için uzman onarım ve ekran değişimi hizmeti. Markanızı seçerek detaylı bilgi ve hizmetlerimize ulaşabilirsiniz.
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {brands.map((brand) => (
-          <Link key={brand.name} href={`/brands/${brand.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`} className="flex flex-col items-center bg-white rounded-xl shadow p-6 hover:shadow-lg transition">
-            <div className="w-20 h-20 mb-4 flex items-center justify-center">
-              <Image src={brand.logo || '/brands/placeholder.svg'} alt={brand.name} width={80} height={80} />
-            </div>
-            <span className="text-lg font-semibold text-center">{brand.name}</span>
-          </Link>
-        ))}
+        {brands.map((brand) => {
+          // Özel durumlar için URL mapping
+          const urlMapping: { [key: string]: string } = {
+            'Arçelik': 'arcelik',
+            'Hi-Level': 'hi-level',
+            'SEG': 'seg'
+          };
+          
+          const urlSlug = urlMapping[brand.name] || brand.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+          
+          return (
+            <Link key={brand.name} href={`/brands/${urlSlug}`} className="flex flex-col items-center bg-white rounded-xl shadow p-6 hover:shadow-lg transition">
+              <div className="w-20 h-20 mb-4 flex items-center justify-center">
+                <Image src={brand.logo || '/brands/placeholder.svg'} alt={brand.name} width={80} height={80} />
+              </div>
+              <span className="text-lg font-semibold text-center">{brand.name}</span>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

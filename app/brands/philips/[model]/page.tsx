@@ -19,7 +19,7 @@ export default function PhilipsModelDetail({ params }: { params: { model: string
           <div className="flex-1 flex flex-col items-start justify-center text-left z-10">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-blue-700 mb-6 leading-tight drop-shadow-sm">{modelData.brand} {modelData.model} Ekran Değişimi ve Tamiri</h1>
             <p className="text-lg sm:text-xl text-gray-700 mb-8 max-w-xl">Orijinal parçalar, <span className="text-blue-600 font-semibold">12 ay garanti</span> ve <span className="text-blue-600 font-semibold">uzman teknisyenlerimiz</span>le televizyonunuzu ilk günkü performansına kavuşturuyoruz.</p>
-            <a href="#fiyat-teklifi" className="inline-block px-8 py-4 rounded-full bg-blue-600 text-white text-lg font-bold shadow-lg hover:bg-blue-700 transition-all duration-200 animate-float focus:outline-none focus:ring-4 focus:ring-blue-300">Anında Fiyat Teklifi Al</a>
+            <a href="/quote" className="inline-block px-8 py-4 rounded-full bg-blue-600 text-white text-lg font-bold shadow-lg hover:bg-blue-700 transition-all duration-200 animate-float focus:outline-none focus:ring-4 focus:ring-blue-300">Anında Fiyat Teklifi Al</a>
           </div>
           {/* Sağ: TV Görseli */}
           <div className="flex-1 flex items-center justify-center z-10">
