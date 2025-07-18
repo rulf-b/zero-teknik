@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, Shield, Clock, Star, MessageCircle } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 const steps = [
@@ -47,6 +47,13 @@ export default function DiagnosisAndQuotePage() {
     preferredDate: '',
     preferredTime: '',
   });
+  const [brands, setBrands] = useState<string[]>([]);
+
+  useEffect(() => {
+    fetch('/api/brands')
+      .then(res => res.json())
+      .then(data => setBrands(data.map((b: any) => b.name)));
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -69,6 +76,11 @@ export default function DiagnosisAndQuotePage() {
       alert('Bir hata oluştu. Lütfen tekrar deneyin.');
     }
   };
+
+  // İstanbul ilçeleri (app/locations/page.tsx'dan)
+  const ISTANBUL_DISTRICTS = [
+    'Adalar', 'Arnavutköy', 'Ataşehir', 'Avcılar', 'Bağcılar', 'Bahçelievler', 'Bakırköy', 'Başakşehir', 'Bayrampaşa', 'Beşiktaş', 'Beykoz', 'Beylikdüzü', 'Beyoğlu', 'Büyükçekmece', 'Çatalca', 'Çekmeköy', 'Esenler', 'Esenyurt', 'Eyüpsultan', 'Fatih', 'Gaziosmanpaşa', 'Güngören', 'Kadıköy', 'Kağıthane', 'Kartal', 'Küçükçekmece', 'Maltepe', 'Pendik', 'Sancaktepe', 'Sarıyer', 'Şile', 'Şişli', 'Sultanbeyli', 'Sultangazi', 'Tuzla', 'Ümraniye', 'Üsküdar', 'Zeytinburnu'
+  ];
 
   return (
     <div className="pt-20 min-h-screen bg-gray-50">
@@ -133,22 +145,17 @@ export default function DiagnosisAndQuotePage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">TV Markası *</label>
-                        <select 
-                          name="brand" 
-                          value={form.brand} 
-                          onChange={handleChange} 
-                          required 
+                        <select
+                          name="brand"
+                          value={form.brand}
+                          onChange={handleChange}
+                          required
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         >
                           <option value="">Marka Seçin</option>
-                          <option value="Samsung">Samsung</option>
-                          <option value="LG">LG</option>
-                          <option value="Sony">Sony</option>
-                          <option value="Philips">Philips</option>
-                          <option value="Panasonic">Panasonic</option>
-                          <option value="Hisense">Hisense</option>
-                          <option value="TCL">TCL</option>
-                          <option value="Vestel">Vestel</option>
+                          {brands.map((brand) => (
+                            <option key={brand} value={brand}>{brand}</option>
+                          ))}
                         </select>
                       </div>
                       <div>
@@ -203,21 +210,18 @@ export default function DiagnosisAndQuotePage() {
                         </select>
                       </div>
                       <div className="md:col-span-2">
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Lokasyon *</label>
-                        <select 
-                          name="location" 
-                          value={form.location} 
-                          onChange={handleChange} 
-                          required 
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Lokasyon (İlçe) *</label>
+                        <select
+                          name="location"
+                          value={form.location}
+                          onChange={handleChange}
+                          required
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         >
-                          <option value="">Lokasyon Seçin</option>
-                          <option value="Istanbul">İstanbul</option>
-                          <option value="Ankara">Ankara</option>
-                          <option value="Izmir">İzmir</option>
-                          <option value="Bursa">Bursa</option>
-                          <option value="Antalya">Antalya</option>
-                          <option value="Other">Diğer</option>
+                          <option value="">İlçe Seçin</option>
+                          {ISTANBUL_DISTRICTS.map((district) => (
+                            <option key={district} value={district}>{district}</option>
+                          ))}
                         </select>
                       </div>
                       <div className="md:col-span-2">

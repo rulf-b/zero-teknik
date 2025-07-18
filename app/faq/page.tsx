@@ -1,30 +1,17 @@
+"use client";
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-
-const faqs = [
-  {
-    question: 'TV ekranım kırıldı, tamir mi edilmeli yoksa değişmeli mi?',
-    answer: 'Çoğu durumda kırık ekranlar tamir edilemez, ekran değişimi gerekir. Ancak panelin tipi ve hasarın boyutuna göre en uygun çözümü uzmanlarımız belirler.'
-  },
-  {
-    question: 'TV tamiri ne kadar sürer?',
-    answer: 'Çoğu TV ekran değişimi ve tamiri aynı gün içinde tamamlanır. Parça temini veya özel arızalarda süre değişebilir.'
-  },
-  {
-    question: 'Tamir sonrası garanti veriyor musunuz?',
-    answer: 'Evet, tüm ekran değişimi ve tamir işlemlerimizde 12 ay garanti sunuyoruz.'
-  },
-  {
-    question: 'TV ekranımda ses var ama görüntü yok, neden olabilir?',
-    answer: 'Bu sorun genellikle arka aydınlatma arızası, panel veya anakart kaynaklı olabilir. Uzman teşhisi gereklidir.'
-  },
-  {
-    question: 'TV ekran değişimi fiyatları neye göre belirleniyor?',
-    answer: 'Fiyatlar; TV\'nin marka/modeli, ekran boyutu, panel tipi ve yedek parça maliyetine göre belirlenir. Net fiyat için ücretsiz teklif alabilirsiniz.'
-  }
-];
+import { useEffect, useState } from 'react';
 
 export default function FAQPage() {
+  const [faqs, setFaqs] = useState<{question: string, answer: string}[]>([]);
+  useEffect(() => {
+    fetch('/api/faq')
+      .then(res => res.json())
+      .then(data => setFaqs(data));
+  }, []);
+
   return (
     <section className="pt-40 pb-20 bg-white min-h-screen">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">

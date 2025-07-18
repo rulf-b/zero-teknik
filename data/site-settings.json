@@ -1,0 +1,75 @@
+{
+  "companyName": "Zero TV Servisi",
+  "phone": "+90 555 123 45 67",
+  "email": "info@zerotv.com",
+  "address": "İstanbul, Türkiye",
+  "whatsapp": "+90 555 123 45 67",
+  "workingHours": [
+    {
+      "day": "Pazartesi",
+      "hours": "09:00 - 18:00"
+    },
+    {
+      "day": "Salı",
+      "hours": "09:00 - 18:00"
+    },
+    {
+      "day": "Çarşamba",
+      "hours": "09:00 - 18:00"
+    },
+    {
+      "day": "Perşembe",
+      "hours": "09:00 - 18:00"
+    },
+    {
+      "day": "Cuma",
+      "hours": "09:00 - 18:00"
+    },
+    {
+      "day": "Cumartesi",
+      "hours": "10:00 - 16:00"
+    },
+    {
+      "day": "Pazar",
+      "hours": "Kapalı"
+    }
+  ],
+  "description": "TV tamir ve servis hizmetleri",
+  "homepageHero": {
+    "title": "Profesyonel TV Ekran Tamiri Hizmetleri",
+    "subtitle": "Uzman TV ekran değişimi, LED panel tamiri ve anakart hizmetleri. Tüm büyük TV markaları için hızlı ve garantili onarım.",
+    "stats": {
+      "years": 10,
+      "yearsLabel": "Yıl Deneyim",
+      "repairedTVs": 5000,
+      "repairedTVsLabel": "Onarılan TV",
+      "support": "7/24",
+      "supportLabel": "Destek"
+    },
+    "sliderImages": [
+      "/screens/1.jpeg",
+      "/screens/2.jpeg",
+      "/screens/3.jpeg",
+      "/screens/5.jpeg",
+      "/screens/6.jpeg",
+      "/screens/7.jpeg",
+      "/screens/8.jpeg",
+      "/screens/9.jpeg",
+      "/screens/10.jpeg"
+    ]
+  },
+  "testimonialStats": {
+    "tvsCount": 5000,
+    "tvsLabel": "Onarılan TV",
+    "tvsSub": "Tüm marka ve modeller",
+    "rating": "4.9/5",
+    "ratingLabel": "Ortalama Puan",
+    "ratingSub": "Google & WhatsApp yorumları",
+    "successRate": 99,
+    "successLabel": "Başarı Oranı",
+    "successSub": "Yüksek müşteri memnuniyeti",
+    "warranty": 12,
+    "warrantyLabel": "Garanti Süresi",
+    "warrantySub": "Tüm işlemlerde geçerli"
+  }
+}

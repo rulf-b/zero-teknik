@@ -5,25 +5,10 @@ import { Shield, Clock, Users, Phone } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useCounter } from '@/hooks/use-counter';
 
-const sliderImages = [
-  '/screens/1.jpeg',
-  '/screens/2.jpeg',
-  '/screens/3.jpeg',
-  '/screens/5.jpeg',
-  '/screens/6.jpeg',
-  '/screens/7.jpeg',
-  '/screens/8.jpeg',
-  '/screens/9.jpeg',
-  '/screens/10.jpeg',
-];
-
 const Hero = () => {
   const [current, setCurrent] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-
-  // Sayı animasyonları
-  const yearsCount = useCounter({ end: 10, start: 0, duration: 2500, delay: 500 });
-  const tvsCount = useCounter({ end: 5000, start: 0, duration: 4000, delay: 800 });
+  const [heroData, setHeroData] = useState<any>(null);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -33,18 +18,45 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    fetch('/api/site-settings')
+      .then(res => res.json())
+      .then(data => setHeroData(data.homepageHero || null));
+  }, []);
+
+  // Defaults if not set
+  const title = heroData?.title || 'Profesyonel TV Ekran Tamiri Hizmetleri';
+  const subtitle = heroData?.subtitle || 'Uzman TV ekran değişimi, LED panel tamiri ve anakart hizmetleri. Tüm büyük TV markaları için hızlı ve garantili onarım.';
+  const stats = heroData?.stats || { years: 10, yearsLabel: 'Yıl Deneyim', repairedTVs: 5000, repairedTVsLabel: 'Onarılan TV', support: '7/24', supportLabel: 'Destek' };
+  const sliderImages = heroData?.sliderImages && Array.isArray(heroData.sliderImages) && heroData.sliderImages.length > 0
+    ? heroData.sliderImages
+    : [
+        '/screens/1.jpeg',
+        '/screens/2.jpeg',
+        '/screens/3.jpeg',
+        '/screens/5.jpeg',
+        '/screens/6.jpeg',
+        '/screens/7.jpeg',
+        '/screens/8.jpeg',
+        '/screens/9.jpeg',
+        '/screens/10.jpeg',
+      ];
+
+  // Animated counters
+  const yearsCount = useCounter({ end: stats.years, start: 0, duration: 2500, delay: 500 });
+  const tvsCount = useCounter({ end: stats.repairedTVs, start: 0, duration: 4000, delay: 800 });
+
   return (
     <section className="bg-gradient-to-br from-blue-50 to-white py-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
-          <div className={`${isLoaded ? 'animate-fade-in-up' : 'opacity-0'}`}>
+          <div className={`${isLoaded ? 'animate-fade-in-up' : 'opacity-0'}`}> 
             <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
-              Profesyonel TV Ekran 
-              <span className="text-blue-600 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent"> Tamiri</span> Hizmetleri
+              {title}
             </h1>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Uzman TV ekran değişimi, LED panel tamiri ve anakart hizmetleri. Tüm büyük TV markaları için hızlı ve garantili onarım.
+              {subtitle}
             </p>
             {/* Stats with animated counters */}
             <div className="grid grid-cols-3 gap-6 mb-8">
@@ -53,21 +65,21 @@ const Hero = () => {
                 style={{ animationDelay: '0.2s' }}
               >
                 <div className="text-2xl font-bold text-blue-600 hover-glow">{yearsCount}+</div>
-                <div className="text-sm text-gray-600">Yıl Deneyim</div>
+                <div className="text-sm text-gray-600">{stats.yearsLabel}</div>
               </div>
               <div 
                 className="text-center animate-scale-in"
                 style={{ animationDelay: '0.4s' }}
               >
                 <div className="text-2xl font-bold text-blue-600 hover-glow">{tvsCount.toLocaleString()}+</div>
-                <div className="text-sm text-gray-600">Onarılan TV</div>
+                <div className="text-sm text-gray-600">{stats.repairedTVsLabel}</div>
               </div>
               <div 
                 className="text-center animate-scale-in"
                 style={{ animationDelay: '0.6s' }}
               >
-                <div className="text-2xl font-bold text-blue-600 hover-glow">7/24</div>
-                <div className="text-sm text-gray-600">Destek</div>
+                <div className="text-2xl font-bold text-blue-600 hover-glow">{stats.support}</div>
+                <div className="text-sm text-gray-600">{stats.supportLabel}</div>
               </div>
             </div>
             {/* CTA Buttons */}
@@ -97,7 +109,7 @@ const Hero = () => {
           {/* Image Slider with enhanced animations */}
           <div className={`relative animate-slide-in-right`}>
             <div className="relative rounded-2xl overflow-hidden shadow-2xl h-96 w-full">
-              {sliderImages.map((src, idx) => (
+              {sliderImages.map((src: string, idx: number) => (
                 <img
                   key={src}
                   src={src}
@@ -110,7 +122,7 @@ const Hero = () => {
             </div>
             {/* Enhanced Dot Indicators */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-30">
-              {sliderImages.map((_, idx) => (
+              {sliderImages.map((_: any, idx: number) => (
                 <button
                   key={idx}
                   type="button"

@@ -1,58 +1,51 @@
+"use client";
+
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react';
 import ContactForm from '@/components/contact/ContactForm';
-
-export const metadata: Metadata = {
-  title: 'İletişim | Ekran Sitesi',
-  description: 'Ekran Sitesi ile iletişime geçin. LED ekran, dijital tabela ve görsel sistemler hakkında bilgi ve teklif alın.',
-  keywords: 'iletişim, ekran sitesi, teklif, LED ekran, dijital tabela, iletişim bilgileri',
-  openGraph: {
-    title: 'İletişim | Ekran Sitesi',
-    description: 'LED ekran ve dijital tabela çözümlerimiz için bizimle iletişime geçin.',
-    type: 'website',
-    locale: 'tr_TR',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'İletişim | Ekran Sitesi',
-    description: 'LED ekran ve dijital tabela çözümlerimiz için bizimle iletişime geçin.',
-  },
-};
+import { useEffect, useState } from 'react';
 
 const ContactPage = () => {
+  const [siteSettings, setSiteSettings] = useState<any>(null);
+  useEffect(() => {
+    fetch('/api/site-settings')
+      .then(res => res.json())
+      .then(data => setSiteSettings(data));
+  }, []);
+
   const contactMethods = [
     {
       icon: Phone,
       title: 'Telefon',
       description: 'Hemen yardım almak için bizi arayın',
-      contact: '+90 555 123 4567',
-      action: 'tel:+905551234567',
+      contact: siteSettings?.phone || '+90 555 123 4567',
+      action: `tel:${(siteSettings?.phone || '+90 555 123 4567').replace(/\D/g, '')}`,
       available: '7/24 Hizmet'
     },
     {
       icon: MessageCircle,
       title: 'WhatsApp',
       description: 'WhatsApp üzerinden hızlı yanıt',
-      contact: '+90 555 123 4567',
-      action: 'https://wa.me/905551234567',
+      contact: siteSettings?.whatsapp || '+90 555 123 45 67',
+      action: `https://wa.me/${(siteSettings?.whatsapp || '+90 555 123 45 67').replace(/\D/g, '')}`,
       available: 'Şu an çevrimiçi'
     },
     {
       icon: Mail,
       title: 'E-posta',
       description: 'Detaylı bilgi gönderebilirsiniz',
-      contact: 'info@techfixpro.com',
-      action: 'mailto:info@techfixpro.com',
+      contact: siteSettings?.email || 'info@techfixpro.com',
+      action: `mailto:${siteSettings?.email || 'info@techfixpro.com'}`,
       available: '< 2 saat yanıt'
     },
     {
       icon: MapPin,
       title: 'Hizmet Bölgesi',
-      description: "İstanbul'un her yerine geliyoruz",
-      contact: "İstanbul, Tüm İlçeler",
+      description: "Sadece İstanbul'un tüm ilçelerine hizmet veriyoruz",
+      contact: siteSettings?.address || 'İstanbul, Tüm İlçeler',
       action: '/locations/istanbul',
       available: 'Ücretsiz alım & teslimat'
     }
@@ -76,6 +69,13 @@ const ContactPage = () => {
       answer: "Evet, Samsung, LG, Sony, Philips, TCL ve daha birçok büyük markaya hizmet veriyoruz."
     }
   ];
+
+  const [workingHours, setWorkingHours] = useState<{day: string, hours: string}[]>([]);
+  useEffect(() => {
+    fetch('/api/site-settings')
+      .then(res => res.json())
+      .then(data => setWorkingHours(data.workingHours || []));
+  }, []);
 
   return (
     <div className="pt-20">
@@ -115,19 +115,19 @@ const ContactPage = () => {
                     {method.available}
                   </div>
                   {method.action.startsWith('http') ? (
-                    <a href={method.action} target="_blank" rel="noopener noreferrer">
+                    <a href={method.action} target="_blank" rel="noopener noreferrer" className="block w-full">
                       <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
                         Şimdi İletişime Geç
                       </Button>
                     </a>
                   ) : method.action.startsWith('/') ? (
-                    <Link href={method.action}>
+                    <Link href={method.action} className="block w-full">
                       <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
                         Detayları Gör
                       </Button>
                     </Link>
                   ) : (
-                    <a href={method.action}>
+                    <a href={method.action} className="block w-full">
                       <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
                         Şimdi İletişime Geç
                       </Button>
@@ -164,19 +164,12 @@ const ContactPage = () => {
                   <h3 className="text-xl font-bold text-gray-900">Çalışma Saatleri</h3>
                 </div>
                 <div className="space-y-3">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Pazartesi - Cuma</span>
-                    <span className="font-medium">8:00 - 22:00</span>
-                  </div>
-                  
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Cumartesi</span>
-                    <span className="font-medium">9:00 - 20:00</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Pazar</span>
-                    <span className="font-medium">10:00 - 18:00</span>
-                  </div>
+                  {workingHours.map((item, idx) => (
+                    <div className="flex justify-between" key={idx}>
+                      <span className="text-gray-600">{item.day}</span>
+                      <span className="font-medium">{item.hours}</span>
+                    </div>
+                  ))}
                   <div className="border-t pt-3 mt-3">
                     <div className="text-sm text-green-600 font-medium">
                       Acil servis 7/24 hizmetinizde

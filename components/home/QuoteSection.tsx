@@ -11,10 +11,10 @@ const QuoteSection = () => {
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedIssue, setSelectedIssue] = useState('');
   const [estimatedPrice, setEstimatedPrice] = useState('');
+  const [brands, setBrands] = useState<string[]>([]);
 
   const { prices, loading } = usePrices();
 
-  const brands = ['Samsung', 'LG', 'Sony', 'Philips', 'Vestel', 'TCL', 'Hisense'];
   const sizes = ['32"', '40"', '43"', '50"', '55"', '65"', '75"', '85"'];
   const issues = [
     { name: 'Cracked Screen', turkishName: 'Kırık Ekran' },
@@ -25,6 +25,12 @@ const QuoteSection = () => {
     { name: 'No Power', turkishName: 'Güç Yok' },
     { name: 'Other', turkishName: 'Diğer' }
   ];
+
+  useEffect(() => {
+    fetch('/api/brands')
+      .then(res => res.json())
+      .then(data => setBrands(data.map((b: any) => b.name)));
+  }, []);
 
   // Yeni fiyat yapısından fiyat hesapla
   const calculatePrice = () => {

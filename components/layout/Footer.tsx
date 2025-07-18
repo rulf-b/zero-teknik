@@ -12,6 +12,7 @@ const Footer = () => {
     size: '',
     issue: '',
   });
+  const [siteSettings, setSiteSettings] = useState<any>(null);
 
   useEffect(() => {
     setForm(f => ({
@@ -22,6 +23,12 @@ const Footer = () => {
     }));
   }, [searchParams]);
 
+  useEffect(() => {
+    fetch('/api/site-settings')
+      .then(res => res.json())
+      .then(data => setSiteSettings(data));
+  }, []);
+
   return (
     <footer className="bg-gray-900 text-white overflow-x-hidden w-full">
       <div className="w-full px-4 sm:px-6 lg:px-8 py-12 overflow-x-hidden">
@@ -30,10 +37,10 @@ const Footer = () => {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <Image src="/brands/zero_alt.png" alt="Zero Logo" width={48} height={48} className="rounded-lg bg-white" />
-              <div className="text-xl font-bold">Zero Teknik</div>
+              <div className="text-xl font-bold">{siteSettings?.companyName || 'Zero Teknik'}</div>
             </div>
             <p className="text-gray-400 mb-4">
-              10 yılı aşkın deneyimle profesyonel TV ekran tamiri ve değişimi hizmetleri.
+              {siteSettings?.description || '10 yılı aşkın deneyimle profesyonel TV ekran tamiri ve değişimi hizmetleri.'}
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
@@ -76,15 +83,15 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-blue-400" />
-                <span className="text-gray-400">+90 555 123 4567</span>
+                <span className="text-gray-400">{siteSettings?.phone || '+90 555 123 4567'}</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-blue-400" />
-                <span className="text-gray-400">info@techfixpro.com</span>
+                <span className="text-gray-400">{siteSettings?.email || 'info@techfixpro.com'}</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-5 h-5 text-blue-400" />
-                <span className="text-gray-400">İstanbul, Türkiye</span>
+                <span className="text-gray-400">{siteSettings?.address || 'İstanbul, Türkiye'}</span>
               </div>
             </div>
           </div>

@@ -4,7 +4,7 @@ import { MapPin, Phone } from 'lucide-react';
 import { Metadata } from 'next';
 
 const serviceAreas = [
-  'İstanbul', 'Ankara', 'İzmir', 'Bursa', 'Antalya', 'Adana', 'Konya', 'Gaziantep', 'Kocaeli', 'Mersin', 'Kayseri', 'Eskişehir'
+  'Adalar', 'Arnavutköy', 'Ataşehir', 'Avcılar', 'Bağcılar', 'Bahçelievler', 'Bakırköy', 'Başakşehir', 'Bayrampaşa', 'Beşiktaş', 'Beykoz', 'Beylikdüzü', 'Beyoğlu', 'Büyükçekmece', 'Çatalca', 'Çekmeköy', 'Esenler', 'Esenyurt', 'Eyüpsultan', 'Fatih', 'Gaziosmanpaşa', 'Güngören', 'Kadıköy', 'Kağıthane', 'Kartal', 'Küçükçekmece', 'Maltepe', 'Pendik', 'Sancaktepe', 'Sarıyer', 'Şile', 'Şişli', 'Sultanbeyli', 'Sultangazi', 'Tuzla', 'Ümraniye', 'Üsküdar', 'Zeytinburnu'
 ];
 
 const services = [
@@ -39,18 +39,18 @@ const whyChooseUs = [
 
 export const metadata: Metadata = {
   title: 'Hizmet Bölgeleri | Ekran Sitesi',
-  description: 'Ekran Sitesi olarak hizmet verdiğimiz bölgeleri ve şehirleri inceleyin. Türkiye genelinde LED ekran ve dijital tabela çözümleri.',
-  keywords: 'hizmet bölgeleri, ekran sitesi, LED ekran, dijital tabela, şehirler',
+  description: 'Sadece İstanbul ve tüm ilçelerinde hizmet veriyoruz.',
+  keywords: 'hizmet bölgeleri, İstanbul, TV tamiri, ekran değişimi, ilçeler',
   openGraph: {
     title: 'Hizmet Bölgeleri | Ekran Sitesi',
-    description: 'Türkiye genelinde LED ekran ve dijital tabela çözümlerimiz için hizmet verdiğimiz bölgeler.',
+    description: 'Sadece İstanbul ve ilçelerinde hizmet verdiğimiz bölgeler.',
     type: 'website',
     locale: 'tr_TR',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Hizmet Bölgeleri | Ekran Sitesi',
-    description: 'Türkiye genelinde LED ekran ve dijital tabela çözümlerimiz için hizmet verdiğimiz bölgeler.',
+    description: 'Sadece İstanbul ve ilçelerinde hizmet verdiğimiz bölgeler.',
   },
 };
 
@@ -64,10 +64,10 @@ export default function LocationsPage() {
             <span className="text-blue-600 font-semibold">Lokasyonlar</span>
           </div>
           <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Türkiye Genelinde TV Tamir Hizmetleri
+            İstanbul Genelinde TV Tamir Hizmetleri
           </h1>
           <p className="text-xl text-gray-600 mb-8">
-            Türkiye genelinde profesyonel TV ekran değişimi ve tamir hizmetleri. Aynı gün servis, uzman teknisyenler ve tüm onarımlarda 12 ay garanti.
+            İstanbul ve tüm ilçelerinde profesyonel TV ekran değişimi ve tamir hizmetleri. Aynı gün servis, uzman teknisyenler ve tüm onarımlarda 12 ay garanti.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mb-8">
             <Link href="/quote">
@@ -90,10 +90,10 @@ export default function LocationsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Hizmet Verdiğimiz Şehirler
+              Hizmet Verdiğimiz İlçeler
             </h2>
             <p className="text-xl text-gray-600">
-              Türkiye'nin birçok ilinde TV tamir hizmeti sunuyoruz
+              İstanbul'un tüm ilçelerinde TV tamir hizmeti sunuyoruz
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -106,7 +106,7 @@ export default function LocationsPage() {
           </div>
           <div className="text-center mt-8">
             <p className="text-gray-600 mb-4">
-              Şehrinizi listede göremiyor musunuz? Çevre illere de hizmet veriyoruz.
+              Tüm İstanbul ilçelerine hizmet veriyoruz.
             </p>
             <a href="tel:+905551234567">
               <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50">

@@ -112,7 +112,6 @@ export default function TCLModelDetail({ params }: { params: { model: string } }
             <li>Uzman teknik servis desteği</li>
             <li>Hızlı onarım süreci ve aynı gün teslimat seçeneği</li>
             <li>Garanti kapsamında işlem</li>
-            <li>İstanbul içi servis ve kargo ile tüm Türkiye'ye hizmet</li>
           </ul>
           <h2 className="font-semibold text-xl mt-6 mb-2">Ekran Değişimi Gerektiren Durumlar</h2>
           <ul className="list-disc list-inside mb-4">
@@ -128,7 +127,7 @@ export default function TCLModelDetail({ params }: { params: { model: string } }
           <h2 className="font-semibold text-xl mt-6 mb-2">Servis Süreci</h2>
           <ol className="list-decimal list-inside mb-4">
             <li><b>İletişim:</b> Randevu oluşturmak için bize ulaşın.</li>
-            <li><b>Teslimat:</b> Cihazınızı servisimize getirin ya da kargo ile gönderin.</li>
+            <li><b>Teslimat:</b> Cihazınızı sadece servisimize getirin.</li>
             <li><b>Arıza Tespiti:</b> Cihaz ücretsiz kontrol edilir.</li>
             <li><b>Onay ve Onarım:</b> Onayınızla ekran değişimi yapılır.</li>
             <li><b>Kalite Kontrol ve Teslim:</b> Testleri tamamlanan cihaz tarafınıza teslim edilir.</li>

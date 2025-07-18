@@ -1,0 +1,58 @@
+[
+  {
+    "id": "1",
+    "title": "TV Ekran Değişimi",
+    "description": "Kırık veya hasarlı TV ekranlarının profesyonel değişimi",
+    "icon": "🖥️",
+    "features": [
+      "Orijinal ekran parçaları",
+      "Garantili işçilik",
+      "Hızlı teslimat",
+      "Ücretsiz teşhis"
+    ],
+    "price": "Fiyat için teklif alın",
+    "image": "/services/screen-replacement.jpg"
+  },
+  {
+    "id": "2",
+    "title": "Anakart Tamiri",
+    "description": "TV anakart sorunlarının uzman tamiri",
+    "icon": "🔧",
+    "features": [
+      "Elektronik tamir",
+      "Parça değişimi",
+      "Test ve kontrol",
+      "Garanti"
+    ],
+    "price": "Fiyat için teklif alın",
+    "image": "/services/motherboard-repair.jpg"
+  },
+  {
+    "id": "3",
+    "title": "LED Aydınlatma Değişimi",
+    "description": "Arka aydınlatma sistemlerinin tamiri",
+    "icon": "💡",
+    "features": [
+      "LED strip değişimi",
+      "Güç kaynağı tamiri",
+      "Kalite kontrol",
+      "Uzun ömürlü çözüm"
+    ],
+    "price": "Fiyat için teklif alın",
+    "image": "/services/led-replacement.jpg"
+  },
+  {
+    "id": "4",
+    "title": "Teşhis ve Teklif",
+    "description": "Ücretsiz arıza teşhisi ve fiyat teklifi",
+    "icon": "🔍",
+    "features": [
+      "Ücretsiz teşhis",
+      "Detaylı rapor",
+      "Fiyat teklifi",
+      "Hızlı yanıt"
+    ],
+    "price": "Ücretsiz",
+    "image": "/services/diagnosis.jpg"
+  }
+] 

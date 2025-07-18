@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Metadata } from 'next';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -23,19 +23,30 @@ const QuotePage = () => {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [estimatedPrice, setEstimatedPrice] = useState('');
+  const [brands, setBrands] = useState<string[]>([]);
+  const [workingHours, setWorkingHours] = useState<{day: string, hours: string}[]>([]);
 
-  const tvBrands = ['Samsung', 'LG', 'Sony', 'Philips', 'TCL', 'Hisense', 'Vestel', 'Panasonic'];
+  useEffect(() => {
+    fetch('/api/brands')
+      .then(res => res.json())
+      .then(data => setBrands(data.map((b: any) => b.name)));
+  }, []);
+
+  useEffect(() => {
+    fetch('/api/site-settings')
+      .then(res => res.json())
+      .then(data => setWorkingHours(data.workingHours || []));
+  }, []);
+
   const screenSizes = ['32"', '40"', '43"', '50"', '55"', '65"', '75"', '85"'];
   const issueTypes = [
-    'Cracked Screen',
-    'Black Screen',
-    'Backlight Issues',
-    'Dead Pixels',
-    'Color Problems',
-    'No Power',
-    'Sound Issues',
-    'Remote Control Problems',
-    'Other'
+    'Kırık Ekran',
+    'Siyah Ekran',
+    'Arka Aydınlatma Sorunları',
+    'Ölü Piksel',
+    'Renk Sorunları',
+    'Güç Yok',
+    'Diğer'
   ];
   const locations = [
     'Kadıköy', 'Şişli', 'Beşiktaş', 'Üsküdar', 'Fatih', 'Beyoğlu',
@@ -57,15 +68,13 @@ const QuotePage = () => {
 
   const calculateEstimatedPrice = () => {
     const basePrices: { [key: string]: number } = {
-      'Cracked Screen': 800,
-      'Black Screen': 600,
-      'Backlight Issues': 500,
-      'Dead Pixels': 400,
-      'Color Problems': 450,
-      'No Power': 350,
-      'Sound Issues': 300,
-      'Remote Control Problems': 150,
-      'Other': 400
+      'Kırık Ekran': 800,
+      'Siyah Ekran': 600,
+      'Arka Aydınlatma Sorunları': 500,
+      'Ölü Piksel': 400,
+      'Renk Sorunları': 450,
+      'Güç Yok': 350,
+      'Diğer': 400
     };
 
     const sizeMultipliers: { [key: string]: number } = {
@@ -251,7 +260,7 @@ const QuotePage = () => {
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         >
                           <option value="">Marka Seçin</option>
-                          {tvBrands.map(brand => (
+                          {brands.map(brand => (
                             <option key={brand} value={brand}>{brand}</option>
                           ))}
                         </select>
@@ -429,14 +438,12 @@ const QuotePage = () => {
               <Card className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Çalışma Saatleri</h3>
                 <div className="space-y-2 text-sm text-gray-600">
-                  <div className="flex justify-between">
-                    <span>Pazartesi - Cuma</span>
-                    <span>8:00 - 22:00</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Cumartesi - Pazar</span>
-                    <span>9:00 - 20:00</span>
-                  </div>
+                  {workingHours.map((item, idx) => (
+                    <div className="flex justify-between" key={idx}>
+                      <span>{item.day}</span>
+                      <span>{item.hours}</span>
+                    </div>
+                  ))}
                   <div className="text-xs text-green-600 mt-2">Acil servis 7/24</div>
                 </div>
               </Card>

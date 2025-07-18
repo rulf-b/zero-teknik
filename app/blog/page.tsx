@@ -1,97 +1,25 @@
-import { Metadata } from 'next';
+"use client";
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Calendar, User, ArrowRight, Search } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'Blog | Ekran Sitesi',
-  description: 'Ekran Sitesi blogunda LED ekranlar, dijital tabelalar ve görsel sistemler hakkında güncel bilgilere ulaşın.',
-  keywords: 'blog, ekran sitesi, LED ekran, dijital tabela, görsel sistemler, makaleler',
-  openGraph: {
-    title: 'Blog | Ekran Sitesi',
-    description: 'LED ekranlar ve dijital tabelalar hakkında güncel makaleler ve ipuçları.',
-    type: 'website',
-    locale: 'tr_TR',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Blog | Ekran Sitesi',
-    description: 'LED ekranlar ve dijital tabelalar hakkında güncel makaleler ve ipuçları.',
-  },
-};
-
 const BlogPage = () => {
-  const blogPosts = [
-    {
-      title: 'TV Ekranında Dikey Çizgiler Nasıl Giderilir?',
-      excerpt: 'TV ekranında dikey çizgilerin yaygın nedenlerini ve ne zaman profesyonel tamir gerektiğini öğrenin. Sorun giderme adımlarını ve çözüm seçeneklerini anlatıyoruz.',
-      image: 'https://images.pexels.com/photos/6953876/pexels-photo-6953876.jpeg?auto=compress&cs=tinysrgb&w=600',
-      author: 'Teknoloji Uzmanı',
-      date: '15 Ocak 2025',
-      slug: 'fix-vertical-lines-tv-screen',
-      category: 'TV Tamir İpuçları',
-      readTime: '5 dk okuma'
-    },
-    {
-      title: 'Samsung ve LG: Hangi TV Ekranı Daha Dayanıklı?',
-      excerpt: 'Samsung ve LG TV ekranlarının dayanıklılığını ve ömrünü karşılaştırarak bilinçli bir tercih yapın. Detaylı analiz ve güvenilirlik.',
-      image: 'https://images.pexels.com/photos/4009599/pexels-photo-4009599.jpeg?auto=compress&cs=tinysrgb&w=600',
-      author: 'Teknoloji Uzmanı',
-      date: '12 Ocak 2025',
-      slug: 'samsung-vs-lg-tv-screen-durability',
-      category: 'TV Markaları',
-      readTime: '8 dk okuma'
-    },
-    {
-      title: 'TV Anakartı Arızası Belirtileri',
-      excerpt: 'TV anakartınızın profesyonel tamir veya değişim gerektirdiğini gösteren uyarı işaretlerini öğrenin. Yaygın semptomlar ve çözümler.',
-      image: 'https://images.pexels.com/photos/4009604/pexels-photo-4009604.jpeg?auto=compress&cs=tinysrgb&w=600',
-      author: 'Teknoloji Uzmanı',
-      date: '10 Ocak 2025',
-      slug: 'tv-motherboard-repair-signs',
-      category: 'Donanım Sorunları',
-      readTime: '6 dk okuma'
-    },
-    {
-      title: 'LED Arka Aydınlatma Sorunları: Teşhis ve Çözümler',
-      excerpt: "Modern TV'lerde LED arka aydınlatma sorunlarını teşhis etme ve giderme rehberi. Farklı arka aydınlatma problemleri ve çözüm yolları.",
-      image: 'https://images.pexels.com/photos/4009606/pexels-photo-4009606.jpeg?auto=compress&cs=tinysrgb&w=600',
-      author: 'Teknoloji Uzmanı',
-      date: '8 Ocak 2025',
-      slug: 'led-backlight-problems-solutions',
-      category: 'LED Tamiri',
-      readTime: '7 dk okuma'
-    },
-    {
-      title: 'TV Ekran Değişimi: Tamir mi, Yenisi mi?',
-      excerpt: 'TV ekranınızı tamir ettirmek ile yeni TV almak arasında doğru kararı verin. Fiyat analizi ve farklı boyut/yaş için öneriler.',
-      image: 'https://images.pexels.com/photos/4009608/pexels-photo-4009608.jpeg?auto=compress&cs=tinysrgb&w=600',
-      author: 'Teknoloji Uzmanı',
-      date: '5 Ocak 2025',
-      slug: 'tv-screen-replacement-vs-new-tv',
-      category: 'Satın Alma Rehberi',
-      readTime: '10 dk okuma'
-    },
-    {
-      title: 'Yaygın TV Sorunları ve Pratik Çözümler',
-      excerpt: 'Profesyonel yardıma başvurmadan önce yaygın TV sorunlarını kendiniz çözün. Ses, görüntü ve bağlantı problemleri için pratik öneriler.',
-      image: 'https://images.pexels.com/photos/4009610/pexels-photo-4009610.jpeg?auto=compress&cs=tinysrgb&w=600',
-      author: 'Teknoloji Uzmanı',
-      date: '3 Ocak 2025',
-      slug: 'common-tv-problems-quick-fixes',
-      category: 'Sorun Giderme',
-      readTime: '12 dk okuma'
-    }
-  ];
+  const [blogPosts, setBlogPosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/blog-posts')
+      .then(res => res.json())
+      .then(data => {
+        setBlogPosts(data);
+        setLoading(false);
+      });
+  }, []);
 
   const categories = [
     'Tüm Yazılar',
-    'TV Tamir İpuçları',
-    'TV Markaları',
-    'Donanım Sorunları',
-    'LED Tamiri',
-    'Satın Alma Rehberi',
-    'Sorun Giderme'
+    // Kategoriler dinamikleştirilebilir
   ];
 
   return (
@@ -105,8 +33,6 @@ const BlogPage = () => {
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
             TV tamiri hakkında uzman ipuçları, sorun giderme rehberleri ve sektörden güncel bilgiler. TV bakımını öğrenin, cihazlarınızı daha uzun ömürlü kullanın.
           </p>
-          
-          {/* Search Bar */}
           <div className="max-w-md mx-auto relative">
             <input
               type="text"
@@ -117,8 +43,6 @@ const BlogPage = () => {
           </div>
         </div>
       </section>
-
-      {/* Categories */}
       <section className="py-8 bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-4">
@@ -134,76 +58,50 @@ const BlogPage = () => {
           </div>
         </div>
       </section>
-
-      {/* Blog Posts */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post, index) => (
-              <article
-                key={index}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
-              >
-                {/* Featured Image */}
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                      {post.category}
-                    </span>
-                  </div>
-                  <div className="absolute top-4 right-4">
-                    <span className="bg-black/70 text-white px-2 py-1 rounded text-xs">
-                      {post.readTime}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <h2 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
-                    {post.title}
-                  </h2>
-                  
-                  <p className="text-gray-600 mb-4 line-clamp-3">
-                    {post.excerpt}
-                  </p>
-
-                  {/* Meta Info */}
-                  <div className="flex items-center text-sm text-gray-500 mb-4">
-                    <div className="flex items-center mr-4">
-                      <User className="w-4 h-4 mr-1" />
-                      {post.author}
-                    </div>
-                    <div className="flex items-center">
-                      <Calendar className="w-4 h-4 mr-1" />
-                      {post.date}
-                    </div>
-                  </div>
-
-                  {/* Read More Link */}
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium transition-colors"
+          {loading ? (
+            <div>Yükleniyor...</div>
+          ) : blogPosts.length === 0 ? (
+            <div>Blog yazısı bulunamadı.</div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {blogPosts.map((post, index) => (
+                <Link key={post.id || index} href={`/blog/${post.id}`} className="block group">
+                  <article
+                    key={post.id || index}
+                    className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
                   >
-                    Makalenin Devamı
-                    <ArrowRight className="w-4 h-4 ml-1" />
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          {/* Load More Button */}
-          <div className="text-center mt-12">
-            <Button size="lg" variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50">
-              Daha Fazla Makale Yükle
-            </Button>
-          </div>
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <h2 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                        {post.title}
+                      </h2>
+                      <p className="text-gray-600 mb-4 line-clamp-3">
+                        {post.excerpt}
+                      </p>
+                      <div className="flex items-center text-sm text-gray-500 mb-4">
+                        <div className="flex items-center mr-4">
+                          <User className="w-4 h-4 mr-1" />
+                          {post.author}
+                        </div>
+                        <div className="flex items-center">
+                          <Calendar className="w-4 h-4 mr-1" />
+                          {post.date}
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
